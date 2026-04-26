@@ -98,15 +98,6 @@ export default function Home() {
 
         <div className="container relative z-10">
           <div className="max-w-2xl">
-            <div className="mb-6 inline-block">
-              <div className="bg-white rounded-lg px-4 py-2 inline-flex items-center">
-                <img
-                  src="/manus-storage/community-fund-logo_ac6fc928.png"
-                  alt="Funded by the National Lottery Community Fund"
-                  className="h-12 md:h-14 w-auto"
-                />
-              </div>
-            </div>
             <h1 className="text-4xl md:text-6xl font-bold text-white leading-tight mb-6">
               Menichu Vesmich
             </h1>
@@ -128,6 +119,15 @@ export default function Home() {
               >
                 Book a Place
               </Link>
+            </div>
+            <div className="mt-10 inline-block">
+              <div className="bg-white rounded-lg px-4 py-2 inline-flex items-center">
+                <img
+                  src="/manus-storage/community-fund-logo_ac6fc928.png"
+                  alt="Funded by the National Lottery Community Fund"
+                  className="h-12 md:h-14 w-auto"
+                />
+              </div>
             </div>
           </div>
         </div>
