@@ -2,14 +2,6 @@ import { Link } from "wouter";
 import { trpc } from "@/lib/trpc";
 import PublicNav from "@/components/PublicNav";
 import PublicFooter from "@/components/PublicFooter";
-import {
-  BarChart, Bar, XAxis, YAxis, Tooltip, ResponsiveContainer,
-  PieChart, Pie, Cell, Legend,
-  LineChart, Line, CartesianGrid,
-  RadarChart, Radar, PolarGrid, PolarAngleAxis,
-} from "recharts";
-import { SESSION_TYPE_LABELS } from "@/lib/sessionUtils";
-import type { SessionType } from "@/lib/sessionUtils";
 
 // ── Static stats (fixed per brief) ───────────────────────────────────────────
 const STATS = [
@@ -28,53 +20,21 @@ const HIGHLIGHTS = [
   { icon: "📌", title: "Guidance for Mothers", desc: "Personalised guidance and referrals to local statutory and voluntary services, ensuring every woman gets the support she needs." },
 ];
 
-const MONTHS_DATA = [
-  { month: "Dec", sessions: 4 },
-  { month: "Jan", sessions: 4 },
-  { month: "Feb", sessions: 4 },
-  { month: "Mar", sessions: 5 },
-  { month: "Apr", sessions: 4 },
-  { month: "May", sessions: 4 },
-  { month: "Jun", sessions: 5 },
-  { month: "Jul", sessions: 3 },
+const GALLERY = [
+  { src: "/manus-storage/final_poster_01_launch_efb6bb50.png", caption: "Programme Launch" },
+  { src: "/manus-storage/final_poster_02_weekly_17dffeea.png", caption: "Weekly Sessions" },
+  { src: "/manus-storage/final_poster_03_volunteer_845d1afd.png", caption: "Volunteer Training" },
+  { src: "/manus-storage/final_poster_04_expert_talks_2ee588d4.png", caption: "Expert Talks" },
+  { src: "/manus-storage/final_poster_05_mentalhealth_7d0518ae.png", caption: "Mental Wellbeing" },
+  { src: "/manus-storage/final_poster_06_social_69b5f0e8.png", caption: "Social Gathering" },
+  { src: "/manus-storage/final_poster_07_spring_af017f7a.png", caption: "Spring Sessions" },
+  { src: "/manus-storage/final_poster_08_savedate_d77cc4f9.png", caption: "Save the Date" },
+  { src: "/manus-storage/final_poster_09_peersupport_c3c91764.png", caption: "Peer Support" },
+  { src: "/manus-storage/final_poster_10_celebration_837ffa5c.png", caption: "Community Celebration" },
 ];
 
-const TYPE_DATA = [
-  { name: "Community", value: 8 },
-  { name: "Antenatal", value: 5 },
-  { name: "Postnatal", value: 4 },
-  { name: "Health", value: 5 },
-  { name: "Wellbeing", value: 5 },
-  { name: "Nutrition", value: 2 },
-  { name: "Mental Health", value: 3 },
-  { name: "Practical", value: 4 },
-  { name: "Guest Speaker", value: 1 },
-];
 
-const ENGAGEMENT_DATA = [
-  { month: "Dec", participants: 18 },
-  { month: "Jan", participants: 34 },
-  { month: "Feb", participants: 52 },
-  { month: "Mar", participants: 78 },
-  { month: "Apr", participants: 110 },
-  { month: "May", participants: 145 },
-  { month: "Jun", participants: 175 },
-  { month: "Jul", participants: 200 },
-];
 
-const RADAR_DATA = [
-  { subject: "Antenatal Health", A: 90 },
-  { subject: "Mental Wellbeing", A: 85 },
-  { subject: "Nutrition", A: 70 },
-  { subject: "Community", A: 95 },
-  { subject: "Practical Skills", A: 75 },
-  { subject: "Postnatal Care", A: 80 },
-];
-
-const PIE_COLOURS = [
-  "var(--teal-500)", "var(--gold-500)", "var(--teal-300)", "var(--gold-300)",
-  "var(--teal-700)", "#a78bfa", "#fb923c", "#94a3b8", "#fb7185",
-];
 
 export default function Home() {
   return (
@@ -215,7 +175,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* ── Data & charts ─────────────────────────────────────────────────── */}
+      {/* ── Past Events Gallery ────────────────────────────────────────────────── */}
       <section className="py-20" style={{ backgroundColor: "var(--cream-100)" }}>
         <div className="container">
           <div className="text-center mb-12">
@@ -223,101 +183,41 @@ export default function Home() {
               className="text-xs font-semibold tracking-widest uppercase mb-3"
               style={{ color: "var(--teal-600)" }}
             >
-              Programme at a Glance
+              Our Journey
             </p>
             <h2 className="text-3xl md:text-4xl font-bold" style={{ color: "var(--teal-800)" }}>
-              Data &amp; Impact
+              Past Events
             </h2>
+            <p className="mt-3 text-base" style={{ color: "var(--teal-600)" }}>
+              A glimpse into the sessions, gatherings, and moments that have shaped our community.
+            </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-            {/* Sessions by month */}
-            <div className="bg-white rounded-xl p-6 shadow-sm border" style={{ borderColor: "var(--cream-300)" }}>
-              <h3 className="text-base font-semibold mb-4" style={{ color: "var(--teal-700)" }}>
-                Sessions by Month
-              </h3>
-              <ResponsiveContainer width="100%" height={220}>
-                <BarChart data={MONTHS_DATA} margin={{ top: 5, right: 10, bottom: 5, left: -20 }}>
-                  <XAxis dataKey="month" tick={{ fontSize: 12 }} />
-                  <YAxis tick={{ fontSize: 12 }} allowDecimals={false} />
-                  <Tooltip />
-                  <Bar dataKey="sessions" fill="var(--teal-500)" radius={[4, 4, 0, 0]} />
-                </BarChart>
-              </ResponsiveContainer>
-            </div>
-
-            {/* Session types */}
-            <div className="bg-white rounded-xl p-6 shadow-sm border" style={{ borderColor: "var(--cream-300)" }}>
-              <h3 className="text-base font-semibold mb-4" style={{ color: "var(--teal-700)" }}>
-                Session Types
-              </h3>
-              <ResponsiveContainer width="100%" height={220}>
-                <PieChart>
-                  <Pie
-                    data={TYPE_DATA}
-                    cx="50%"
-                    cy="50%"
-                    outerRadius={80}
-                    dataKey="value"
-                    label={({ name, percent }) => `${name} ${(percent * 100).toFixed(0)}%`}
-                    labelLine={false}
-                  >
-                    {TYPE_DATA.map((_, i) => (
-                      <Cell key={i} fill={PIE_COLOURS[i % PIE_COLOURS.length]} />
-                    ))}
-                  </Pie>
-                  <Tooltip />
-                </PieChart>
-              </ResponsiveContainer>
-            </div>
-
-            {/* Participant growth */}
-            <div className="bg-white rounded-xl p-6 shadow-sm border" style={{ borderColor: "var(--cream-300)" }}>
-              <h3 className="text-base font-semibold mb-4" style={{ color: "var(--teal-700)" }}>
-                Cumulative Participants
-              </h3>
-              <ResponsiveContainer width="100%" height={220}>
-                <LineChart data={ENGAGEMENT_DATA} margin={{ top: 5, right: 10, bottom: 5, left: -20 }}>
-                  <CartesianGrid strokeDasharray="3 3" stroke="var(--cream-300)" />
-                  <XAxis dataKey="month" tick={{ fontSize: 12 }} />
-                  <YAxis tick={{ fontSize: 12 }} />
-                  <Tooltip />
-                  <Line
-                    type="monotone"
-                    dataKey="participants"
-                    stroke="var(--gold-500)"
-                    strokeWidth={2}
-                    dot={{ fill: "var(--gold-500)" }}
-                  />
-                </LineChart>
-              </ResponsiveContainer>
-            </div>
-
-            {/* Support areas radar */}
-            <div className="bg-white rounded-xl p-6 shadow-sm border" style={{ borderColor: "var(--cream-300)" }}>
-              <h3 className="text-base font-semibold mb-4" style={{ color: "var(--teal-700)" }}>
-                Support Areas Covered
-              </h3>
-              <ResponsiveContainer width="100%" height={220}>
-                <RadarChart data={RADAR_DATA}>
-                  <PolarGrid stroke="var(--cream-300)" />
-                  <PolarAngleAxis dataKey="subject" tick={{ fontSize: 11 }} />
-                  <Radar
-                    name="Coverage"
-                    dataKey="A"
-                    stroke="var(--teal-500)"
-                    fill="var(--teal-500)"
-                    fillOpacity={0.3}
-                  />
-                  <Tooltip />
-                </RadarChart>
-              </ResponsiveContainer>
-            </div>
+          <div className="columns-2 md:columns-3 lg:columns-4 gap-4 space-y-4">
+            {GALLERY.map((item, i) => (
+              <div
+                key={i}
+                className="break-inside-avoid rounded-xl overflow-hidden shadow-sm group relative"
+                style={{ border: "1px solid var(--cream-300)" }}
+              >
+                <img
+                  src={item.src}
+                  alt={item.caption}
+                  className="w-full object-cover transition-transform duration-300 group-hover:scale-105"
+                />
+                <div
+                  className="absolute inset-0 flex items-end opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+                  style={{ background: "linear-gradient(to top, rgba(0,40,35,0.75) 0%, transparent 60%)" }}
+                >
+                  <span className="text-white text-sm font-medium px-3 pb-3">{item.caption}</span>
+                </div>
+              </div>
+            ))}
           </div>
         </div>
       </section>
 
-      {/* ── CTA banner ────────────────────────────────────────────────────── */}
+            {/* ── CTA banner ────────────────────────────────────────────────────── */}
       <section
         className="py-20"
         style={{ background: "linear-gradient(135deg, var(--teal-700) 0%, var(--teal-600) 100%)" }}
