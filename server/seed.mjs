@@ -7,7 +7,7 @@ import mysql from "mysql2/promise";
 import * as dotenv from "dotenv";
 dotenv.config();
 
-const VENUE = "Miriam Bineth Community Hall, Southend-on-Sea";
+const VENUE = "127 North Road Community Hall";
 
 const ALL_SESSIONS = [
   // ── December 2025 ──────────────────────────────────────────────────────────

@@ -327,7 +327,7 @@ export default function Home() {
             Join Us This Monday
           </h2>
           <p className="text-white/85 text-lg mb-8">
-            Sessions run every Monday, 10:00am – 12:00pm at Miriam Bineth Community Hall,
+            Sessions run every Monday, 10:00am – 12:00pm at 127 North Road Community Hall,
             Southend-on-Sea
           </p>
           <Link

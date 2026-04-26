@@ -74,7 +74,7 @@ export default function ComingEvents() {
           <h1 className="text-3xl md:text-5xl font-bold text-white mb-3">Coming Events</h1>
           <p className="text-white/80 text-lg max-w-2xl">
             Browse our upcoming sessions and book your place. All sessions run every Monday,
-            10:00am – 12:00pm at Miriam Bineth Community Hall.
+            10:00am – 12:00pm at 127 North Road Community Hall.
           </p>
         </div>
       </section>

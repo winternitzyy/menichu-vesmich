@@ -27,7 +27,7 @@ const EMPTY_FORM: SessionForm = {
   topic: "",
   type: "community",
   description: "",
-  venue: "Miriam Bineth Community Hall, Southend-on-Sea",
+  venue: "127 North Road Community Hall",
   isPast: false,
 };
 

@@ -60,7 +60,7 @@ export default function PublicFooter() {
             </h4>
             <address className="not-italic text-sm leading-relaxed">
               <p>Menichu Vesmichu</p>
-              <p>23 Cotswold Road</p>
+              <p>127 North Road</p>
               <p>Southend-on-Sea, SS0 8AA</p>
               <p className="mt-3">
                 <a
