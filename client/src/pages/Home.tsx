@@ -173,49 +173,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* ── Past Events Gallery ────────────────────────────────────────────────── */}
-      <section className="py-20" style={{ backgroundColor: "var(--cream-100)" }}>
-        <div className="container">
-          <div className="text-center mb-12">
-            <p
-              className="text-xs font-semibold tracking-widest uppercase mb-3"
-              style={{ color: "var(--teal-600)" }}
-            >
-              Our Journey
-            </p>
-            <h2 className="text-3xl md:text-4xl font-bold" style={{ color: "var(--teal-800)" }}>
-              Past Events
-            </h2>
-            <p className="mt-3 text-base" style={{ color: "var(--teal-600)" }}>
-              A glimpse into the sessions, gatherings, and moments that have shaped our community.
-            </p>
-          </div>
-
-          <div className="columns-2 md:columns-3 lg:columns-4 gap-4 space-y-4">
-            {GALLERY.map((item, i) => (
-              <div
-                key={i}
-                className="break-inside-avoid rounded-xl overflow-hidden shadow-sm group relative"
-                style={{ border: "1px solid var(--cream-300)" }}
-              >
-                <img
-                  src={item.src}
-                  alt={item.caption}
-                  className="w-full object-cover transition-transform duration-300 group-hover:scale-105"
-                />
-                <div
-                  className="absolute inset-0 flex items-end opacity-0 group-hover:opacity-100 transition-opacity duration-300"
-                  style={{ background: "linear-gradient(to top, rgba(0,40,35,0.75) 0%, transparent 60%)" }}
-                >
-                  <span className="text-white text-sm font-medium px-3 pb-3">{item.caption}</span>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* ── Testimonials ────────────────────────────────────────────────────── */}
+         {/* ── Testimonialss ────────────────────────────────────────────────────── */}
       <section className="py-20" style={{ backgroundColor: "var(--teal-900)" }}>
         <div className="container">
           <div className="text-center mb-12">
