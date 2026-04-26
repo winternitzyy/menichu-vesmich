@@ -2,7 +2,6 @@ import { Link } from "wouter";
 import { trpc } from "@/lib/trpc";
 import PublicNav from "@/components/PublicNav";
 import PublicFooter from "@/components/PublicFooter";
-import PromoSlideshow from "@/components/PromoSlideshow";
 
 // ── Static stats (fixed per brief) ───────────────────────────────────────────
 const STATS = [
@@ -304,9 +303,6 @@ export default function Home() {
           </Link>
         </div>
       </section>
-
-      {/* ── Programme Materials Slideshow ──────────────────────────────────── */}
-      <PromoSlideshow />
 
       <PublicFooter />
     </div>
