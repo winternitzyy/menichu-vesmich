@@ -76,7 +76,7 @@ export default function Home() {
         />
 
         <div className="container relative z-10">
-          <div className="flex flex-col md:flex-row items-center gap-10">
+          <div className="flex flex-col md:flex-row items-center gap-12 lg:gap-16">
             <div className="flex-1 max-w-xl">
             <h1 className="text-4xl md:text-6xl font-bold text-white leading-tight mb-6">
               Menichu Vesmichu
@@ -106,8 +106,8 @@ export default function Home() {
               <img
                 src="https://d2xsxph8kpxj0f.cloudfront.net/310519663377220004/9KyRemormJqYQvzKhcafTt/hero_chassidic_v1-FbssuDTSqp4chs7STRUaNh.webp"
                 alt="Mothers gathering at Menichu Vesmichu"
-                className="rounded-2xl shadow-2xl w-full max-w-md object-cover"
-                style={{ maxHeight: "380px" }}
+                className="rounded-2xl shadow-2xl w-full object-cover"
+                style={{ maxWidth: "600px", maxHeight: "480px", minHeight: "320px" }}
               />
             </div>
           </div>
