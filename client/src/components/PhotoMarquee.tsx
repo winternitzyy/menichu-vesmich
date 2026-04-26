@@ -1,15 +1,23 @@
-// Continuously scrolling strip — real event photos only, no generated materials.
+// Continuously scrolling strip — 4 real event photos + 8 AI-generated scene images.
 const IMAGES = [
   { src: "/manus-storage/event_real_02_d94a533a.webp", alt: "Community gathering" },
+  { src: "/manus-storage/event_scene_01_482a5aad.png", alt: "Mothers in community" },
   { src: "/manus-storage/event_real_03_9bbc84f1.webp", alt: "Programme session" },
+  { src: "/manus-storage/event_scene_02_d4f33690.png", alt: "Workshop session" },
   { src: "/manus-storage/event_real_04_b5520abe.webp", alt: "Volunteer training" },
+  { src: "/manus-storage/event_scene_03_51112509.png", alt: "Support circle" },
   { src: "/manus-storage/event_real_01_90408138.webp", alt: "Crèche & baby play" },
+  { src: "/manus-storage/event_scene_04_9c51a9e8.png", alt: "Antenatal session" },
+  { src: "/manus-storage/event_scene_05_7e02f167.png", alt: "Community connection" },
+  { src: "/manus-storage/event_scene_06_f4e0ddee.png", alt: "Expert talk" },
+  { src: "/manus-storage/event_scene_07_aee168eb.png", alt: "Nutrition workshop" },
+  { src: "/manus-storage/event_scene_08_c8e98eeb.png", alt: "Celebration gathering" },
 ];
 
-// Quadruple for a seamless infinite loop
-const TRACK = [...IMAGES, ...IMAGES, ...IMAGES, ...IMAGES];
+// Triple for a seamless infinite loop
+const TRACK = [...IMAGES, ...IMAGES, ...IMAGES];
 
-const ITEM_W = 380;
+const ITEM_W = 360;
 const GAP = 20;
 const TOTAL_W = IMAGES.length * (ITEM_W + GAP);
 
@@ -31,7 +39,7 @@ export default function PhotoMarquee() {
           style={{
             gap: GAP,
             width: "max-content",
-            animation: `marquee-photos 30s linear infinite`,
+            animation: `marquee-photos 45s linear infinite`,
           }}
         >
           {TRACK.map((img, i) => (
