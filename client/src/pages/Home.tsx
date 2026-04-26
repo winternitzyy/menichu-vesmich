@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import { Link } from "wouter";
 import { trpc } from "@/lib/trpc";
 import PublicNav from "@/components/PublicNav";
@@ -35,6 +36,26 @@ const GALLERY = [
 
 
 export default function Home() {
+  useEffect(() => {
+    document.title = "Menichu Vesmichu | Mothers' Community Support in Southend-on-Sea";
+    let desc = document.querySelector('meta[name="description"]');
+    if (!desc) {
+      desc = document.createElement('meta');
+      (desc as HTMLMetaElement).name = 'description';
+      document.head.appendChild(desc);
+    }
+    (desc as HTMLMetaElement).content =
+      "Menichu Vesmichu supports mothers in Southend-on-Sea through pregnancy, childbirth, and the postpartum period with weekly community sessions, expert talks, and peer support.";
+    let keywords = document.querySelector('meta[name="keywords"]');
+    if (!keywords) {
+      keywords = document.createElement('meta');
+      (keywords as HTMLMetaElement).name = 'keywords';
+      document.head.appendChild(keywords);
+    }
+    (keywords as HTMLMetaElement).content =
+      "mothers support, pregnancy, postnatal, community, Southend-on-Sea, antenatal, wellbeing, Menichu Vesmichu";
+  }, []);
+
   return (
     <div className="min-h-screen flex flex-col">
       <PublicNav />
@@ -55,7 +76,8 @@ export default function Home() {
         />
 
         <div className="container relative z-10">
-          <div className="max-w-2xl">
+          <div className="flex flex-col md:flex-row items-center gap-10">
+            <div className="flex-1 max-w-xl">
             <h1 className="text-4xl md:text-6xl font-bold text-white leading-tight mb-6">
               Menichu Vesmichu
             </h1>
@@ -78,7 +100,16 @@ export default function Home() {
                 Book a Place
               </Link>
             </div>
-
+            </div>
+            {/* Hero image */}
+            <div className="flex-1 flex justify-center md:justify-end">
+              <img
+                src="https://d2xsxph8kpxj0f.cloudfront.net/310519663377220004/9KyRemormJqYQvzKhcafTt/hero_mothers-gZPL4FYNXhu3MSi7V4nxWJ.webp"
+                alt="Mothers gathering at Menichu Vesmichu"
+                className="rounded-2xl shadow-2xl w-full max-w-md object-cover"
+                style={{ maxHeight: "380px" }}
+              />
+            </div>
           </div>
         </div>
       </section>
