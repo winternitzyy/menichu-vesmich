@@ -24,7 +24,7 @@ export default function PublicNav() {
           <img
             src="https://d2xsxph8kpxj0f.cloudfront.net/310519663377220004/9KyRemormJqYQvzKhcafTt/logo_mv_v3-2TEJeCcusYFnQaV37Y7NSj.webp"
             alt="Menichu Vesmichu"
-            className="h-10 w-auto"
+            className="h-14 w-auto"
             style={{ filter: "brightness(0) invert(1)" }}
           />
         </Link>
