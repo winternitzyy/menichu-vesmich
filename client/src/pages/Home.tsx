@@ -2,6 +2,7 @@ import { Link } from "wouter";
 import { trpc } from "@/lib/trpc";
 import PublicNav from "@/components/PublicNav";
 import PublicFooter from "@/components/PublicFooter";
+import PhotoMarquee from "@/components/PhotoMarquee";
 
 // ── Static stats (fixed per brief) ───────────────────────────────────────────
 const STATS = [
@@ -303,6 +304,9 @@ export default function Home() {
           </Link>
         </div>
       </section>
+
+      {/* ── Scrolling photo strip ─────────────────────────────────────────────────── */}
+      <PhotoMarquee />
 
       <PublicFooter />
     </div>
