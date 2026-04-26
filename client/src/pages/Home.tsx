@@ -215,6 +215,73 @@ export default function Home() {
         </div>
       </section>
 
+      {/* ── Testimonials ────────────────────────────────────────────────────── */}
+      <section className="py-20" style={{ backgroundColor: "var(--teal-900)" }}>
+        <div className="container">
+          <div className="text-center mb-12">
+            <p
+              className="text-xs font-semibold tracking-widest uppercase mb-3"
+              style={{ color: "var(--gold-400)" }}
+            >
+              Voices from Our Community
+            </p>
+            <h2 className="text-3xl md:text-4xl font-bold text-white">
+              What Our Participants Say
+            </h2>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {[
+              {
+                quote: "Coming to these sessions was the best decision I made during my pregnancy. I felt so supported and never judged. The friendships I made here will last a lifetime.",
+                name: "Rivka S.",
+                detail: "First-time mother, attended since January 2026",
+              },
+              {
+                quote: "The crèche meant I could actually sit and listen and take things in for the first time since having my baby. I left every Monday feeling calmer and more confident.",
+                name: "Chana M.",
+                detail: "Mother of two, joined February 2026",
+              },
+              {
+                quote: "I was struggling with the transition to motherhood and didn't know where to turn. This programme gave me practical tools and a community that truly understands.",
+                name: "Devorah L.",
+                detail: "Attended from December 2025",
+              },
+              {
+                quote: "The nutrition session completely changed how I think about feeding my family. The information was clear, relevant, and presented in a way that made sense for our lifestyle.",
+                name: "Miriam K.",
+                detail: "Mother of three, joined March 2026",
+              },
+              {
+                quote: "I was nervous to come at first, but from the very first session I felt at home. The facilitators are warm, knowledgeable, and genuinely care about every woman in the room.",
+                name: "Leah B.",
+                detail: "First-time mother, attended since April 2026",
+              },
+              {
+                quote: "The mental wellbeing session was exactly what I needed. It gave me permission to talk about the hard parts of motherhood in a safe, understanding space.",
+                name: "Esther F.",
+                detail: "Mother of two, joined January 2026",
+              },
+            ].map((t, i) => (
+              <div
+                key={i}
+                className="rounded-2xl p-6 flex flex-col gap-4"
+                style={{ backgroundColor: "var(--teal-800)", border: "1px solid var(--teal-700)" }}
+              >
+                <svg width="28" height="20" viewBox="0 0 28 20" fill="none" aria-hidden="true">
+                  <path d="M0 20V12.5C0 5.596 3.93 1.5 11.79 0l1.21 2C8.87 3.167 6.667 5.5 6 9h5V20H0Zm16 0V12.5C16 5.596 19.93 1.5 27.79 0L29 2c-4.13 1.167-6.333 3.5-7 7h5V20H16Z" fill="var(--gold-400)" opacity="0.6"/>
+                </svg>
+                <p className="text-white/90 text-sm leading-relaxed flex-1">{t.quote}</p>
+                <div>
+                  <p className="font-semibold text-sm" style={{ color: "var(--gold-400)" }}>{t.name}</p>
+                  <p className="text-xs" style={{ color: "var(--teal-300)" }}>{t.detail}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
             {/* ── CTA banner ────────────────────────────────────────────────────── */}
       <section
         className="py-20"
