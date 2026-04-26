@@ -99,7 +99,7 @@ export default function Home() {
         <div className="container relative z-10">
           <div className="max-w-2xl">
             <h1 className="text-4xl md:text-6xl font-bold text-white leading-tight mb-6">
-              Menichu Vesmich
+              Menichu Vesmichuu
             </h1>
             <p className="text-lg md:text-xl text-white/85 leading-relaxed mb-8">
               Supporting Orthodox Jewish women in Southend-on-Sea through pregnancy,
@@ -160,7 +160,7 @@ export default function Home() {
               A Community Built Around You
             </h2>
             <p className="text-base md:text-lg leading-relaxed text-gray-700 mb-4">
-              Menichu Vesmich is a dedicated support programme for Orthodox Jewish women in
+              Menichu Vesmichu is a dedicated support programme for Orthodox Jewish women in
               Southend-on-Sea navigating the journey of pregnancy, birth, and the postnatal
               period. Our weekly Monday sessions bring together women for peer support,
               expert-led talks, and warm social connection.

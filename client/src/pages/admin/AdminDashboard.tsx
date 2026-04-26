@@ -22,7 +22,7 @@ export default function AdminDashboard() {
     <div>
       <div className="mb-8">
         <h1 className="text-2xl font-bold" style={{ color: "var(--teal-800)" }}>Dashboard</h1>
-        <p className="text-sm text-gray-500 mt-1">Welcome to the Menichu Vesmich admin panel.</p>
+        <p className="text-sm text-gray-500 mt-1">Welcome to the Menichu Vesmichu admin panel.</p>
       </div>
 
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5 mb-10">

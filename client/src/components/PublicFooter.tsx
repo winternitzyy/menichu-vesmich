@@ -12,7 +12,7 @@ export default function PublicFooter() {
           <div>
             <div className="mb-3">
               <h3 className="text-lg font-semibold text-white font-serif">
-                Menichu Vesmich
+                Menichu Vesmichu
               </h3>
             </div>
             <p className="text-sm leading-relaxed">
@@ -75,7 +75,7 @@ export default function PublicFooter() {
         </div>
 
         <div className="pt-6 flex flex-col sm:flex-row items-center justify-between gap-2 text-xs">
-          <p>© {new Date().getFullYear()} Menichu Vesmich. All rights reserved.</p>
+          <p>© {new Date().getFullYear()} Menichu Vesmichu. All rights reserved.</p>
           <p>Registered in England &amp; Wales</p>
         </div>
       </div>

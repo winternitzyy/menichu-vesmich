@@ -67,7 +67,7 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
               Admin Panel
             </p>
             <h2 className="text-base font-bold text-white font-serif leading-tight">
-              Menichu Vesmich
+              Menichu Vesmichu
             </h2>
           </Link>
         </div>

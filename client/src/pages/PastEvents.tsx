@@ -39,7 +39,7 @@ export default function PastEvents() {
           </p>
           <h1 className="text-3xl md:text-5xl font-bold text-white mb-3">Past Events</h1>
           <p className="text-white/80 text-lg max-w-2xl">
-            A record of all completed Menichu Vesmich sessions, most recent first.
+            A record of all completed Menichu Vesmichu sessions, most recent first.
           </p>
         </div>
       </section>

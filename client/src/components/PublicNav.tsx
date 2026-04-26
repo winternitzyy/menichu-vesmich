@@ -23,7 +23,7 @@ export default function PublicNav() {
         <Link href="/" className="flex items-center gap-3 no-underline">
           <div className="flex flex-col leading-none">
             <span className="text-lg font-semibold text-white font-serif">
-              Menichu Vesmich
+              Menichu Vesmichu
             </span>
           </div>
         </Link>
