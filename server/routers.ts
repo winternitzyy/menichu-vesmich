@@ -5,6 +5,7 @@ import { getSessionCookieOptions } from "./_core/cookies";
 import { systemRouter } from "./_core/systemRouter";
 import { publicProcedure, protectedProcedure, router } from "./_core/trpc";
 import { notifyOwner } from "./_core/notification";
+import { sendBookingNotificationEmail } from "./email";
 import {
   getAllSessions,
   getUpcomingSessions,
@@ -129,6 +130,23 @@ export const appRouter = router({
         title: `New booking: ${input.firstName} ${input.lastName}`,
         content: `**Session:** ${session.title} (${session.sessionDate})\n**Name:** ${input.firstName} ${input.lastName}\n**Email:** ${input.email}\n**Phone:** ${input.phone ?? "—"}\n**Stage:** ${stageLabels[input.stage] ?? input.stage}\n**Crèche:** ${input.creche ? "Yes" : "No"}`,
       });
+      // Send email notification to coordinator
+      try {
+        await sendBookingNotificationEmail({
+          firstName: input.firstName,
+          lastName: input.lastName,
+          email: input.email,
+          phone: input.phone,
+          stage: input.stage,
+          creche: input.creche,
+          sessionTitle: session.title,
+          sessionDate: session.sessionDate,
+          sessionTime: `${session.startTime} – ${session.endTime}`,
+          sessionVenue: session.venue,
+        });
+      } catch (emailErr) {
+        console.warn("[Booking] Email notification failed:", emailErr);
+      }
       return { success: true };
     }),
     // Admin queries
