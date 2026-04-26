@@ -7,6 +7,7 @@ const NAV_LINKS = [
   { href: "/coming-events", label: "Coming Events" },
   { href: "/past-events", label: "Past Events" },
   { href: "/book", label: "Book a Place" },
+  { href: "/donate", label: "Donate" },
 ];
 
 export default function PublicNav() {

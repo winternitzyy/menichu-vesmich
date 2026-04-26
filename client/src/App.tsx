@@ -10,6 +10,8 @@ import Home from "./pages/Home";
 import ComingEvents from "./pages/ComingEvents";
 import PastEvents from "./pages/PastEvents";
 import BookPage from "./pages/BookPage";
+import Donate from "./pages/Donate";
+import DonateThankYou from "./pages/DonateThankYou";
 
 // Admin pages
 import AdminLayout from "./pages/admin/AdminLayout";
@@ -37,6 +39,8 @@ function Router() {
       <Route path="/coming-events" component={ComingEvents} />
       <Route path="/past-events" component={PastEvents} />
       <Route path="/book" component={BookPage} />
+      <Route path="/donate" component={Donate} />
+      <Route path="/donate/thank-you" component={DonateThankYou} />
       <Route path="/admin" component={AdminRoutes} />
       <Route path="/admin/:rest*" component={AdminRoutes} />
       <Route path="/404" component={NotFound} />

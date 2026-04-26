@@ -6,6 +6,7 @@ import { systemRouter } from "./_core/systemRouter";
 import { publicProcedure, protectedProcedure, router } from "./_core/trpc";
 import { notifyOwner } from "./_core/notification";
 import { sendBookingNotificationEmail } from "./email";
+import { donationsRouter } from "./routers/donations";
 import {
   getAllSessions,
   getUpcomingSessions,
@@ -78,6 +79,7 @@ const bookingInput = z.object({
 // ─── App router ───────────────────────────────────────────────────────────────
 export const appRouter = router({
   system: systemRouter,
+  donations: donationsRouter,
   auth: router({
     me: publicProcedure.query((opts) => opts.ctx.user),
     logout: publicProcedure.mutation(({ ctx }) => {
