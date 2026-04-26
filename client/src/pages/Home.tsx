@@ -104,7 +104,7 @@ export default function Home() {
             {/* Hero image */}
             <div className="flex-1 flex justify-center md:justify-end">
               <img
-                src="https://d2xsxph8kpxj0f.cloudfront.net/310519663377220004/9KyRemormJqYQvzKhcafTt/hero_mothers-gZPL4FYNXhu3MSi7V4nxWJ.webp"
+                src="https://d2xsxph8kpxj0f.cloudfront.net/310519663377220004/9KyRemormJqYQvzKhcafTt/hero_chassidic_v1-FbssuDTSqp4chs7STRUaNh.webp"
                 alt="Mothers gathering at Menichu Vesmichu"
                 className="rounded-2xl shadow-2xl w-full max-w-md object-cover"
                 style={{ maxHeight: "380px" }}
