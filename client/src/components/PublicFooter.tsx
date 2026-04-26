@@ -64,10 +64,10 @@ export default function PublicFooter() {
               <p>Southend-on-Sea, SS0 8AA</p>
               <p className="mt-3">
                 <a
-                  href="mailto:info@menichuvesmich.org"
+                  href="mailto:info@menichuvesmichu.org"
                   className="hover:text-white transition-colors"
                 >
-                  info@menichuvesmich.org
+                  info@menichuvesmichu.org
                 </a>
               </p>
             </address>

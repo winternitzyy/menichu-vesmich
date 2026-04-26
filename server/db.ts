@@ -149,3 +149,9 @@ export async function getAllBookingsWithSession() {
   );
   return enriched;
 }
+
+// ─── Promotional Materials ────────────────────────────────────────────────────
+
+
+
+

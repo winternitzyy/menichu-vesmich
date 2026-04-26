@@ -34,3 +34,11 @@
 ## Phase 6: Delivery
 - [ ] Save checkpoint
 - [ ] Deliver permanent URL to user
+
+## Phase 7: Promotional Materials
+- [ ] DB table: promotionalMaterials (id, title, type, fileUrl, fileKey, description, uploadedAt)
+- [ ] tRPC router: materials.list (public), materials.create (admin), materials.delete (admin)
+- [ ] Public Promotional Materials page with filterable gallery by type
+- [ ] Admin upload panel for adding/removing materials
+- [ ] Wire /materials route in App.tsx and add to PublicNav
+- [ ] Update all email references to info@menichuvesmichu.org
