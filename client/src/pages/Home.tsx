@@ -166,8 +166,7 @@ export default function Home() {
               expert-led talks, and warm social connection.
             </p>
             <p className="text-base leading-relaxed text-gray-600">
-              The programme runs from December 2025 through July 2026, offering 33 sessions
-              covering topics from antenatal health and nutrition to mental wellbeing, infant
+              The programme covers topics from antenatal health and nutrition to mental wellbeing, infant
               feeding, and guidance for mothers.
             </p>
             <Link
