@@ -59,7 +59,7 @@ export default function PublicFooter() {
               Contact
             </h4>
             <address className="not-italic text-sm leading-relaxed">
-              <p>Miriam Bineth Community Hall</p>
+              <p>Menichu Vesmichu</p>
               <p>23 Cotswold Road</p>
               <p>Southend-on-Sea, SS0 8AA</p>
               <p className="mt-3">
