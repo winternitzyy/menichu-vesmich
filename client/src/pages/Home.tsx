@@ -20,7 +20,7 @@ const STATS = [
 ];
 
 const HIGHLIGHTS = [
-  { icon: "🏠", title: "Weekly Sessions", desc: "Every Monday, a warm gathering covering health, wellbeing, and community topics tailored for mothers in Southend-on-Sea." },
+  { icon: "🏠", title: "Weekly Sessions", desc: "Warm gathering covering health, wellbeing, and community topics tailored for mothers in Southend-on-Sea." },
   { icon: "🎓", title: "Expert Talks", desc: "Midwives, health visitors, nutritionists, and mental health professionals share knowledge in a welcoming and supportive setting." },
   { icon: "🤝", title: "Peer Support", desc: "Connect with other women at the same stage of life — share experiences, ask questions, and build lasting friendships." },
   { icon: "👶", title: "Volunteer Training", desc: "20 community volunteers trained to provide ongoing peer support and guidance for mothers beyond the programme sessions." },
