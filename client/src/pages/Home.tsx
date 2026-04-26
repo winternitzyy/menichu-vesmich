@@ -85,7 +85,7 @@ export default function Home() {
       {/* ── Stats strip ───────────────────────────────────────────────────── */}
       <section style={{ backgroundColor: "var(--teal-700)" }}>
         <div className="container py-8">
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-6 text-center">
+          <div className="flex flex-wrap justify-center gap-12 text-center">
             {STATS.map((s) => (
               <div key={s.label} className="flex flex-col items-center">
                 <span
