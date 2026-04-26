@@ -19,9 +19,15 @@ export default function PublicFooter() {
               Supporting Orthodox Jewish women in Southend-on-Sea through pregnancy,
               childbirth, and the postpartum period.
             </p>
-            <p className="text-xs mt-3" style={{ color: "var(--gold-400)" }}>
-              Funded by the National Lottery Community Fund
-            </p>
+            <div className="mt-4">
+              <div className="bg-white rounded-lg px-3 py-2 inline-flex items-center">
+                <img
+                  src="/manus-storage/community-fund-logo_ac6fc928.png"
+                  alt="Funded by the National Lottery Community Fund"
+                  className="h-8 w-auto"
+                />
+              </div>
+            </div>
           </div>
 
           {/* Navigation */}
