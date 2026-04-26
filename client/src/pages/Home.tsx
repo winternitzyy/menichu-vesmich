@@ -99,7 +99,7 @@ export default function Home() {
         <div className="container relative z-10">
           <div className="max-w-2xl">
             <h1 className="text-4xl md:text-6xl font-bold text-white leading-tight mb-6">
-              Menichu Vesmichuu
+              Menichu Vesmichu
             </h1>
             <p className="text-lg md:text-xl text-white/85 leading-relaxed mb-8">
               Supporting Orthodox Jewish women in Southend-on-Sea through pregnancy,
