@@ -5,7 +5,6 @@ import PublicFooter from "@/components/PublicFooter";
 
 // ── Static stats (fixed per brief) ───────────────────────────────────────────
 const STATS = [
-  { value: "33", label: "Sessions" },
   { value: "20", label: "Volunteers" },
   { value: "200", label: "Women Supported" },
   { value: "18+", label: "Topics Discussed" },
