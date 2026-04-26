@@ -5,6 +5,7 @@ import { SESSION_TYPE_LABELS, SESSION_TYPE_COLOURS, formatSessionDate, groupByMo
 import type { SessionType } from "@/lib/sessionUtils";
 import { Loader2, CalendarDays, Clock, MapPin } from "lucide-react";
 import { useState } from "react";
+import PromoSlideshow from "@/components/PromoSlideshow";
 
 export default function PastEvents() {
   const { data: sessions, isLoading } = trpc.sessions.past.useQuery();
@@ -37,9 +38,9 @@ export default function PastEvents() {
           <p className="text-xs font-semibold tracking-widest uppercase mb-2" style={{ color: "var(--gold-400)" }}>
             December 2025 – April 2026
           </p>
-          <h1 className="text-3xl md:text-5xl font-bold text-white mb-3">Past Events</h1>
+          <h1 className="text-3xl md:text-5xl font-bold text-white mb-3">Our Programme So Far</h1>
           <p className="text-white/80 text-lg max-w-2xl">
-            A record of all completed Menichu Vesmichu sessions, most recent first.
+            A look back at every session we have run since December 2025 — the topics covered, the connections made, and the community we have built together.
           </p>
         </div>
       </section>
@@ -167,45 +168,8 @@ export default function PastEvents() {
         </div>
       </section>
 
-      {/* ── Photo Gallery ─────────────────────────────────────────────────── */}
-      <section className="py-16" style={{ backgroundColor: "var(--cream-100)" }}>
-        <div className="container">
-          <div className="text-center mb-10">
-            <p className="text-xs font-semibold tracking-widest uppercase mb-2" style={{ color: "var(--teal-600)" }}>
-              From Our Sessions
-            </p>
-            <h2 className="text-2xl md:text-3xl font-bold" style={{ color: "var(--teal-800)" }}>
-              Moments From the Programme
-            </h2>
-            <p className="mt-3 text-base text-gray-500 max-w-xl mx-auto">
-              A glimpse into the warmth, connection, and community that has made Menichu Vesmichu so special.
-            </p>
-          </div>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-            {[
-              { src: "/manus-storage/event_real_02_d94a533a.webp", caption: "Community Gathering" },
-              { src: "/manus-storage/event_real_03_9bbc84f1.webp", caption: "Programme Session" },
-              { src: "/manus-storage/event_real_04_b5520abe.webp", caption: "Volunteer Training" },
-              { src: "/manus-storage/event_real_01_90408138.webp", caption: "Crèche & Baby Play" },
-            ].map((photo) => (
-              <div
-                key={photo.src}
-                className="group relative overflow-hidden rounded-xl shadow-sm"
-                style={{ aspectRatio: "4/3" }}
-              >
-                <img
-                  src={photo.src}
-                  alt={photo.caption}
-                  className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-4">
-                  <span className="text-white text-sm font-medium">{photo.caption}</span>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
+      {/* ── Programme Materials Slideshow ──────────────────────────────────── */}
+      <PromoSlideshow />
 
       <PublicFooter />
     </div>
