@@ -29,7 +29,7 @@ export default function PhotoMarquee() {
           Our Community in Action
         </p>
         <h2 className="text-2xl md:text-3xl font-bold text-white">
-          Moments From the Programme
+          The Program Atmosphere
         </h2>
       </div>
 
