@@ -16,7 +16,7 @@ const STATS = [
   { value: "33", label: "Sessions" },
   { value: "20", label: "Volunteers" },
   { value: "200", label: "Women Supported" },
-  { value: "18+", label: "Expert Speakers" },
+  { value: "18+", label: "Topics Discussed" },
 ];
 
 const HIGHLIGHTS = [
