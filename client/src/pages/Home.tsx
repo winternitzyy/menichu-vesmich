@@ -23,9 +23,9 @@ const HIGHLIGHTS = [
   { icon: "🏠", title: "Weekly Sessions", desc: "Every Monday, a warm gathering covering health, wellbeing, and community topics tailored for Jewish mothers." },
   { icon: "🎓", title: "Expert Talks", desc: "Midwives, health visitors, nutritionists, and mental health professionals share knowledge in a culturally sensitive setting." },
   { icon: "🤝", title: "Peer Support", desc: "Connect with other women at the same stage of life — share experiences, ask questions, and build lasting friendships." },
-  { icon: "👶", title: "Volunteer Training", desc: "20 community volunteers trained to provide ongoing peer support and signposting beyond the programme sessions." },
+  { icon: "👶", title: "Volunteer Training", desc: "20 community volunteers trained to provide ongoing peer support and guidance for mothers beyond the programme sessions." },
   { icon: "🧸", title: "Crèche Provided", desc: "On-site crèche available at every session so mothers can attend and engage without worry." },
-  { icon: "📌", title: "Signposting", desc: "Guidance and referrals to local statutory and voluntary services, ensuring every woman gets the support she needs." },
+  { icon: "📌", title: "Guidance for Mothers", desc: "Personalised guidance and referrals to local statutory and voluntary services, ensuring every woman gets the support she needs." },
 ];
 
 const MONTHS_DATA = [
@@ -168,7 +168,7 @@ export default function Home() {
             <p className="text-base leading-relaxed text-gray-600">
               The programme runs from December 2025 through July 2026, offering 33 sessions
               covering topics from antenatal health and nutrition to mental wellbeing, infant
-              feeding, and community signposting.
+              feeding, and guidance for mothers.
             </p>
             <Link
               href="/coming-events"

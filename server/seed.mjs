@@ -33,7 +33,7 @@ const ALL_SESSIONS = [
   { sessionDate: "2026-03-09", title: "Relationships & Parenthood", topic: "Navigating relationships after baby", type: "wellbeing", description: "A relationship counsellor discusses how parenthood changes relationships — with partners, family, and friends — and practical ways to maintain connection.", isPast: true },
   { sessionDate: "2026-03-16", title: "Baby Development 0–6 Months", topic: "Developmental milestones", type: "health", description: "A health visitor explains developmental milestones in the first six months, how to support your baby's development through play, and what to look out for.", isPast: true },
   { sessionDate: "2026-03-23", title: "Returning to Work", topic: "Maternity leave, childcare & career", type: "practical", description: "An employment adviser and a local childcare coordinator discuss maternity rights, childcare options, and planning a return to work.", isPast: true },
-  { sessionDate: "2026-03-30", title: "Community Signposting", topic: "Local services & support networks", type: "community", description: "An overview of local statutory and voluntary services available to mothers in Southend-on-Sea, with representatives from key organisations attending.", isPast: true },
+  { sessionDate: "2026-03-30", title: "Guidance for Mothers", topic: "Local services & support networks", type: "community", description: "Personalised guidance for mothers on local statutory and voluntary services available in Southend-on-Sea, with representatives from key organisations attending.", isPast: true },
 
   // ── April 2026 ─────────────────────────────────────────────────────────────
   { sessionDate: "2026-04-06", title: "Weaning & Solid Foods", topic: "Introduction to solid foods", type: "nutrition", description: "A dietitian guides participants through baby-led weaning and traditional weaning approaches, with practical tips on first foods and allergy awareness.", isPast: true },
@@ -60,7 +60,7 @@ const ALL_SESSIONS = [
   { sessionDate: "2026-07-06", title: "Preparing for Summer", topic: "Sun safety, travel & summer health", type: "health", description: "Practical advice on keeping babies and young children safe and healthy during summer — sun protection, travel tips, and managing heat.", isPast: false },
   { sessionDate: "2026-07-13", title: "Looking After Yourself", topic: "Self-care & personal wellbeing", type: "wellbeing", description: "A holistic wellbeing coach leads a session on the importance of self-care for mothers — practical strategies that fit into busy family life.", isPast: false },
   { sessionDate: "2026-07-20", title: "Programme Graduation & Celebration", topic: "Celebrating our community", type: "community", description: "The final session of the Menichu Vesmich 2025–2026 programme. A celebration of the community built, the journeys taken, and the friendships formed.", isPast: false },
-  { sessionDate: "2026-07-27", title: "Signposting & Next Steps", topic: "Ongoing support & community resources", type: "community", description: "A final signposting session connecting participants with ongoing support services, community groups, and resources to carry them forward.", isPast: false },
+  { sessionDate: "2026-07-27", title: "Guidance for Mothers & Next Steps", topic: "Ongoing support & community resources", type: "community", description: "A final guidance session connecting participants with ongoing support services, community groups, and resources to carry them forward.", isPast: false },
 ];
 
 async function seed() {
