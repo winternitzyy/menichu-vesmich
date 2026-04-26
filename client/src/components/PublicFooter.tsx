@@ -10,10 +10,13 @@ export default function PublicFooter() {
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8 pb-8 border-b" style={{ borderColor: "var(--teal-700)" }}>
           {/* Brand */}
           <div>
-            <div className="mb-3">
-              <h3 className="text-lg font-semibold text-white font-serif">
-                Menichu Vesmichu
-              </h3>
+            <div className="mb-4">
+              <img
+                src="https://d2xsxph8kpxj0f.cloudfront.net/310519663377220004/9KyRemormJqYQvzKhcafTt/logo_mv_v3-2TEJeCcusYFnQaV37Y7NSj.webp"
+                alt="Menichu Vesmichu"
+                className="h-12 w-auto"
+                style={{ filter: "brightness(0) invert(1)" }}
+              />
             </div>
             <p className="text-sm leading-relaxed">
               Supporting women in Southend-on-Sea through pregnancy,

@@ -20,12 +20,13 @@ export default function PublicNav() {
     >
       <div className="container flex items-center justify-between h-16">
         {/* Logo */}
-        <Link href="/" className="flex items-center gap-3 no-underline">
-          <div className="flex flex-col leading-none">
-            <span className="text-lg font-semibold text-white font-serif">
-              Menichu Vesmichu
-            </span>
-          </div>
+        <Link href="/" className="flex items-center gap-2 no-underline">
+          <img
+            src="https://d2xsxph8kpxj0f.cloudfront.net/310519663377220004/9KyRemormJqYQvzKhcafTt/logo_mv_v3-2TEJeCcusYFnQaV37Y7NSj.webp"
+            alt="Menichu Vesmichu"
+            className="h-10 w-auto"
+            style={{ filter: "brightness(0) invert(1)" }}
+          />
         </Link>
 
         {/* Desktop nav */}
