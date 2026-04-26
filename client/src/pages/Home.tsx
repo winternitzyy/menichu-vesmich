@@ -20,8 +20,8 @@ const STATS = [
 ];
 
 const HIGHLIGHTS = [
-  { icon: "🏠", title: "Weekly Sessions", desc: "Every Monday, a warm gathering covering health, wellbeing, and community topics tailored for Jewish mothers." },
-  { icon: "🎓", title: "Expert Talks", desc: "Midwives, health visitors, nutritionists, and mental health professionals share knowledge in a culturally sensitive setting." },
+  { icon: "🏠", title: "Weekly Sessions", desc: "Every Monday, a warm gathering covering health, wellbeing, and community topics tailored for mothers in Southend-on-Sea." },
+  { icon: "🎓", title: "Expert Talks", desc: "Midwives, health visitors, nutritionists, and mental health professionals share knowledge in a welcoming and supportive setting." },
   { icon: "🤝", title: "Peer Support", desc: "Connect with other women at the same stage of life — share experiences, ask questions, and build lasting friendships." },
   { icon: "👶", title: "Volunteer Training", desc: "20 community volunteers trained to provide ongoing peer support and guidance for mothers beyond the programme sessions." },
   { icon: "🧸", title: "Crèche Provided", desc: "On-site crèche available at every session so mothers can attend and engage without worry." },
@@ -102,7 +102,7 @@ export default function Home() {
               Menichu Vesmichu
             </h1>
             <p className="text-lg md:text-xl text-white/85 leading-relaxed mb-8">
-              Supporting Orthodox Jewish women in Southend-on-Sea through pregnancy,
+              Supporting women in Southend-on-Sea through pregnancy,
               childbirth, and the postpartum period — with community, care, and connection.
             </p>
             <div className="flex flex-wrap gap-4">
@@ -160,7 +160,7 @@ export default function Home() {
               A Community Built Around You
             </h2>
             <p className="text-base md:text-lg leading-relaxed text-gray-700 mb-4">
-              Menichu Vesmichu is a dedicated support programme for Orthodox Jewish women in
+              Menichu Vesmichu is a dedicated support programme for women in
               Southend-on-Sea navigating the journey of pregnancy, birth, and the postnatal
               period. Our weekly Monday sessions bring together women for peer support,
               expert-led talks, and warm social connection.

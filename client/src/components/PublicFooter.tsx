@@ -16,7 +16,7 @@ export default function PublicFooter() {
               </h3>
             </div>
             <p className="text-sm leading-relaxed">
-              Supporting Orthodox Jewish women in Southend-on-Sea through pregnancy,
+              Supporting women in Southend-on-Sea through pregnancy,
               childbirth, and the postpartum period.
             </p>
             <div className="mt-4">
