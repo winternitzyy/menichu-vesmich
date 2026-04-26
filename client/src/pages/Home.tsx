@@ -21,16 +21,14 @@ const HIGHLIGHTS = [
 ];
 
 const GALLERY = [
-  { src: "/manus-storage/final_poster_01_launch_efb6bb50.png", caption: "Programme Launch" },
-  { src: "/manus-storage/final_poster_02_weekly_17dffeea.png", caption: "Weekly Sessions" },
-  { src: "/manus-storage/final_poster_03_volunteer_845d1afd.png", caption: "Volunteer Training" },
-  { src: "/manus-storage/final_poster_04_expert_talks_2ee588d4.png", caption: "Expert Talks" },
-  { src: "/manus-storage/final_poster_05_mentalhealth_7d0518ae.png", caption: "Mental Wellbeing" },
-  { src: "/manus-storage/final_poster_06_social_69b5f0e8.png", caption: "Social Gathering" },
-  { src: "/manus-storage/final_poster_07_spring_af017f7a.png", caption: "Spring Sessions" },
-  { src: "/manus-storage/final_poster_08_savedate_d77cc4f9.png", caption: "Save the Date" },
-  { src: "/manus-storage/final_poster_09_peersupport_c3c91764.png", caption: "Peer Support" },
-  { src: "/manus-storage/final_poster_10_celebration_837ffa5c.png", caption: "Community Celebration" },
+  { src: "https://d2xsxph8kpxj0f.cloudfront.net/310519663377220004/9KyRemormJqYQvzKhcafTt/event_scene_01-LpixZkw2kduXbFm4mmsPHw.webp", caption: "Community Gathering" },
+  { src: "https://d2xsxph8kpxj0f.cloudfront.net/310519663377220004/9KyRemormJqYQvzKhcafTt/event_scene_02-ivW9sH4vzEHbnhevsMyPuQ.webp", caption: "Health Workshop" },
+  { src: "https://d2xsxph8kpxj0f.cloudfront.net/310519663377220004/9KyRemormJqYQvzKhcafTt/event_scene_03-e9RC7iiaYH7Vps78p8bcK7.webp", caption: "Mother & Baby Group" },
+  { src: "https://d2xsxph8kpxj0f.cloudfront.net/310519663377220004/9KyRemormJqYQvzKhcafTt/event_scene_04-WnGQvWL6cr3ShcDmQnk3ZF.webp", caption: "Peer Support" },
+  { src: "https://d2xsxph8kpxj0f.cloudfront.net/310519663377220004/9KyRemormJqYQvzKhcafTt/event_scene_05-9BN8rXXBPVENTxtW2mAk7Z.webp", caption: "Community Celebration" },
+  { src: "https://d2xsxph8kpxj0f.cloudfront.net/310519663377220004/9KyRemormJqYQvzKhcafTt/event_scene_06-DDyd2EFEUUGe9c2aSWf68Q.webp", caption: "Mental Wellbeing Session" },
+  { src: "https://d2xsxph8kpxj0f.cloudfront.net/310519663377220004/9KyRemormJqYQvzKhcafTt/event_scene_07-9YKdXCVik8sENkL3pAYt9H.webp", caption: "Volunteer Training" },
+  { src: "https://d2xsxph8kpxj0f.cloudfront.net/310519663377220004/9KyRemormJqYQvzKhcafTt/event_scene_08-8FDtFMD8duhQaX7xEbd4XR.webp", caption: "Nutrition Workshop" },
 ];
 
 
