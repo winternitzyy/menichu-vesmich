@@ -11,10 +11,7 @@ export default function PublicFooter() {
           {/* Brand */}
           <div>
             <div className="mb-3">
-              <span className="text-xs tracking-widest uppercase" style={{ color: "var(--gold-400)" }}>
-                מניחו וסמיח
-              </span>
-              <h3 className="text-lg font-semibold text-white font-serif mt-1">
+              <h3 className="text-lg font-semibold text-white font-serif">
                 Menichu Vesmich
               </h3>
             </div>
