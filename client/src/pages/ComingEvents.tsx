@@ -69,12 +69,11 @@ export default function ComingEvents() {
       >
         <div className="container">
           <p className="text-xs font-semibold tracking-widest uppercase mb-2" style={{ color: "var(--gold-400)" }}>
-            April – July 2026
+            April – May 2026
           </p>
           <h1 className="text-3xl md:text-5xl font-bold text-white mb-3">Coming Events</h1>
           <p className="text-white/80 text-lg max-w-2xl">
-            Browse our upcoming sessions and book your place. All sessions run every Monday,
-            10:00am – 12:00pm at 127 North Road Community Hall.
+            Browse our upcoming sessions and book your place.
           </p>
         </div>
       </section>
