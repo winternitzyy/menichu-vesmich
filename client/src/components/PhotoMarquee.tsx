@@ -12,6 +12,8 @@ const IMAGES = [
   { src: "/manus-storage/event_scene_06_f4e0ddee.png", alt: "Expert talk" },
   { src: "/manus-storage/event_scene_07_aee168eb.png", alt: "Nutrition workshop" },
   { src: "/manus-storage/event_scene_08_c8e98eeb.png", alt: "Celebration gathering" },
+  { src: "/manus-storage/IMG_2653_5ac5e974.JPG", alt: "Community event" },
+  { src: "/manus-storage/IMG_2656_429b8912.JPG", alt: "Programme gathering" },
 ];
 
 // Triple for a seamless infinite loop
@@ -19,7 +21,7 @@ const TRACK = [...IMAGES, ...IMAGES, ...IMAGES];
 
 const ITEM_W = 360;
 const GAP = 20;
-const TOTAL_W = IMAGES.length * (ITEM_W + GAP);
+const TOTAL_W = 14 * (ITEM_W + GAP); // 14 images total
 
 export default function PhotoMarquee() {
   return (
