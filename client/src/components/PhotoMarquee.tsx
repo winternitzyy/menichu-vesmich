@@ -1,19 +1,24 @@
-// Continuously scrolling strip — 4 real event photos + 8 AI-generated scene images.
+// Continuously scrolling strip — 9 real event photos + 8 AI-generated scene images (19 total).
 const IMAGES = [
   { src: "/manus-storage/event_real_02_d94a533a.webp", alt: "Community gathering" },
+  { src: "/manus-storage/photo_img4200_f927fb53.webp", alt: "Mothers and babies at session" },
   { src: "/manus-storage/event_scene_01_482a5aad.png", alt: "Mothers in community" },
   { src: "/manus-storage/event_real_03_9bbc84f1.webp", alt: "Programme session" },
+  { src: "/manus-storage/photo_img4205_0fcca610.webp", alt: "Creative workshop" },
   { src: "/manus-storage/event_scene_02_d4f33690.png", alt: "Workshop session" },
   { src: "/manus-storage/event_real_04_b5520abe.webp", alt: "Volunteer training" },
+  { src: "/manus-storage/photo_img4208_87cb15f1.webp", alt: "Community celebration spread" },
   { src: "/manus-storage/event_scene_03_51112509.png", alt: "Support circle" },
   { src: "/manus-storage/event_real_01_90408138.webp", alt: "Crèche & baby play" },
+  { src: "/manus-storage/photo_img4225_d5c6a146.webp", alt: "Group session with reading" },
   { src: "/manus-storage/event_scene_04_9c51a9e8.png", alt: "Antenatal session" },
   { src: "/manus-storage/event_scene_05_7e02f167.png", alt: "Community connection" },
+  { src: "/manus-storage/photo_img4192_f202fc65.webp", alt: "Welcome gift box" },
   { src: "/manus-storage/event_scene_06_f4e0ddee.png", alt: "Expert talk" },
-  { src: "/manus-storage/event_scene_07_aee168eb.png", alt: "Nutrition workshop" },
-  { src: "/manus-storage/event_scene_08_c8e98eeb.png", alt: "Celebration gathering" },
   { src: "/manus-storage/IMG_2653_5ac5e974.JPG", alt: "Community event" },
+  { src: "/manus-storage/event_scene_07_aee168eb.png", alt: "Nutrition workshop" },
   { src: "/manus-storage/IMG_2656_429b8912.JPG", alt: "Programme gathering" },
+  { src: "/manus-storage/event_scene_08_c8e98eeb.png", alt: "Celebration gathering" },
 ];
 
 // Triple for a seamless infinite loop
@@ -21,7 +26,7 @@ const TRACK = [...IMAGES, ...IMAGES, ...IMAGES];
 
 const ITEM_W = 360;
 const GAP = 20;
-const TOTAL_W = 14 * (ITEM_W + GAP); // 14 images total
+const TOTAL_W = 19 * (ITEM_W + GAP); // 19 images total
 
 export default function PhotoMarquee() {
   return (
@@ -41,7 +46,7 @@ export default function PhotoMarquee() {
           style={{
             gap: GAP,
             width: "max-content",
-            animation: `marquee-photos 45s linear infinite`,
+            animation: `marquee-photos 60s linear infinite`,
           }}
         >
           {TRACK.map((img, i) => (
