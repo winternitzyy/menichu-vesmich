@@ -278,12 +278,9 @@ export default function Home() {
       >
         <div className="container text-center">
           <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
-            Join Us For Our Sessions
+            Join Us For Our Weekly Sessions
           </h2>
-          <p className="text-white/85 text-lg mb-8">
-            Sessions run weekly, 10:00am – 12:00pm at 127 North Road Community Hall,
-            Southend-on-Sea
-          </p>
+
           <Link
             href="/book"
             className="inline-flex items-center px-8 py-4 rounded-lg font-semibold text-base no-underline transition-colors"
