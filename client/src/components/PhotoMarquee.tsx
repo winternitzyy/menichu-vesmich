@@ -1,4 +1,4 @@
-// Continuously scrolling strip — 10 real event photos + 8 AI-generated scene images (20 total).
+// Continuously scrolling strip — 10 real event photos + 7 AI-generated scene images (19 total).
 const IMAGES = [
   { src: "/manus-storage/event_real_02_d94a533a.webp", alt: "Community gathering" },
   { src: "/manus-storage/photo_img4200_f927fb53.webp", alt: "Mothers and babies at session" },
@@ -8,7 +8,6 @@ const IMAGES = [
   { src: "/manus-storage/event_scene_02_d4f33690.png", alt: "Workshop session" },
   { src: "/manus-storage/event_real_04_b5520abe.webp", alt: "Volunteer training" },
   { src: "/manus-storage/photo_img4208_87cb15f1.webp", alt: "Community celebration spread" },
-  { src: "/manus-storage/event_scene_03_51112509.png", alt: "Support circle" },
   { src: "/manus-storage/event_real_01_90408138.webp", alt: "Crèche & baby play" },
   { src: "/manus-storage/photo_img4225_d5c6a146.webp", alt: "Group session with reading" },
   { src: "/manus-storage/event_scene_04_9c51a9e8.png", alt: "Antenatal session" },
@@ -27,7 +26,7 @@ const TRACK = [...IMAGES, ...IMAGES, ...IMAGES];
 
 const ITEM_W = 360;
 const GAP = 20;
-const TOTAL_W = 20 * (ITEM_W + GAP); // 20 images total
+const TOTAL_W = 19 * (ITEM_W + GAP); // 19 images total
 
 export default function PhotoMarquee() {
   return (
@@ -47,7 +46,7 @@ export default function PhotoMarquee() {
           style={{
             gap: GAP,
             width: "max-content",
-            animation: `marquee-photos 63s linear infinite`,
+            animation: `marquee-photos 60s linear infinite`,
           }}
         >
           {TRACK.map((img, i) => (
