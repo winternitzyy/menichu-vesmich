@@ -1,4 +1,4 @@
-// Continuously scrolling strip — 9 real event photos + 8 AI-generated scene images (19 total).
+// Continuously scrolling strip — 10 real event photos + 8 AI-generated scene images (20 total).
 const IMAGES = [
   { src: "/manus-storage/event_real_02_d94a533a.webp", alt: "Community gathering" },
   { src: "/manus-storage/photo_img4200_f927fb53.webp", alt: "Mothers and babies at session" },
@@ -19,6 +19,7 @@ const IMAGES = [
   { src: "/manus-storage/event_scene_07_aee168eb.png", alt: "Nutrition workshop" },
   { src: "/manus-storage/IMG_2656_429b8912.JPG", alt: "Programme gathering" },
   { src: "/manus-storage/event_scene_08_c8e98eeb.png", alt: "Celebration gathering" },
+  { src: "/manus-storage/photo_img4215_234fc830.webp", alt: "Outdoor art workshop" },
 ];
 
 // Triple for a seamless infinite loop
@@ -26,7 +27,7 @@ const TRACK = [...IMAGES, ...IMAGES, ...IMAGES];
 
 const ITEM_W = 360;
 const GAP = 20;
-const TOTAL_W = 19 * (ITEM_W + GAP); // 19 images total
+const TOTAL_W = 20 * (ITEM_W + GAP); // 20 images total
 
 export default function PhotoMarquee() {
   return (
@@ -46,7 +47,7 @@ export default function PhotoMarquee() {
           style={{
             gap: GAP,
             width: "max-content",
-            animation: `marquee-photos 60s linear infinite`,
+            animation: `marquee-photos 63s linear infinite`,
           }}
         >
           {TRACK.map((img, i) => (
