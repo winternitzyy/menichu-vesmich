@@ -7,7 +7,7 @@ import { Textarea } from "@/components/ui/textarea";
 import { Input } from "@/components/ui/input";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
-import { MessageSquareHeart, CheckCircle2, X } from "lucide-react";
+import { MessageSquareHeart, CheckCircle2 } from "lucide-react";
 
 const MODAL_KEY = "mv_feedback_shown";
 const BANNER_KEY = "mv_feedback_banner_dismissed";
@@ -88,30 +88,21 @@ export default function FeedbackModal() {
     <>
       {showBanner && (
         <div
-          className="fixed top-0 left-0 right-0 z-50 flex items-center justify-between gap-3 px-4 py-2.5 text-white text-sm font-medium shadow-md"
+          className="w-full flex items-center justify-center gap-2 px-4 py-2.5 text-white text-sm font-medium shadow-sm"
           style={{ backgroundColor: "var(--teal-700)" }}
         >
-          <div className="flex items-center gap-2 flex-1 justify-center">
-            <MessageSquareHeart size={16} style={{ color: "var(--gold-400)" }} />
-            <span>
-              The project is finished —{" "}
-              <button
-                onClick={handleBannerClick}
-                className="underline underline-offset-2 font-semibold hover:opacity-80 transition-opacity cursor-pointer"
-                style={{ color: "var(--gold-300)" }}
-              >
-                please leave feedback
-              </button>
-              {" "}to help shape what comes next.
-            </span>
-          </div>
-          <button
-            onClick={handleBannerDismiss}
-            className="shrink-0 p-1 rounded hover:bg-white/20 transition-colors"
-            aria-label="Dismiss banner"
-          >
-            <X size={15} />
-          </button>
+          <MessageSquareHeart size={16} style={{ color: "var(--gold-400)" }} />
+          <span>
+            The project is finished —{" "}
+            <button
+              onClick={handleBannerClick}
+              className="underline underline-offset-2 font-semibold hover:opacity-80 transition-opacity cursor-pointer"
+              style={{ color: "var(--gold-300)" }}
+            >
+              please leave feedback
+            </button>
+            {" "}to help shape what comes next.
+          </span>
         </div>
       )}
 
