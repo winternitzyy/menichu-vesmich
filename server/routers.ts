@@ -20,6 +20,8 @@ import {
   getAllBookings,
   getAllBookingsWithSession,
   getBookingsBySession,
+  createFeedback,
+  getAllFeedback,
 } from "./db";
 
 // ─── Admin guard ──────────────────────────────────────────────────────────────
@@ -74,6 +76,18 @@ const bookingInput = z.object({
   stage: stageEnum,
   creche: z.boolean().default(false),
   consent: z.boolean(),
+});
+
+// ─── Feedback input schema ───────────────────────────────────────────────────
+const feedbackInput = z.object({
+  name: z.string().optional(),
+  email: z.string().email().optional().or(z.literal("")),
+  overallExperience: z.enum(["excellent", "good", "okay", "poor"]),
+  mostValuable: z.string().optional(),
+  improvements: z.string().optional(),
+  nextProjectWhen: z.enum(["asap", "3_months", "6_months", "12_months", "not_sure"]),
+  nextProjectHow: z.string().optional(),
+  recommend: z.enum(["yes", "maybe", "no"]),
 });
 
 // ─── App router ───────────────────────────────────────────────────────────────
@@ -157,6 +171,23 @@ export const appRouter = router({
     bySession: adminProcedure
       .input(z.object({ sessionId: z.number() }))
       .query(({ input }) => getBookingsBySession(input.sessionId)),
+  }),
+
+  // ─── Feedback ────────────────────────────────────────────────────────────────
+  feedback: router({
+    submit: publicProcedure.input(feedbackInput).mutation(async ({ input }) => {
+      const data = {
+        ...input,
+        email: input.email || undefined,
+      };
+      await createFeedback(data as any);
+      await notifyOwner({
+        title: "New feedback received",
+        content: `**Overall:** ${input.overallExperience}\n**Recommend:** ${input.recommend}\n**Next project when:** ${input.nextProjectWhen}\n**Next project how:** ${input.nextProjectHow ?? "—"}\n**Most valuable:** ${input.mostValuable ?? "—"}\n**Improvements:** ${input.improvements ?? "—"}\n**Name:** ${input.name ?? "Anonymous"}`,
+      });
+      return { success: true };
+    }),
+    all: adminProcedure.query(() => getAllFeedback()),
   }),
 });
 

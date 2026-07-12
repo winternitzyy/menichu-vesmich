@@ -18,6 +18,10 @@ import AdminLayout from "./pages/admin/AdminLayout";
 import AdminDashboard from "./pages/admin/AdminDashboard";
 import AdminSessions from "./pages/admin/AdminSessions";
 import AdminBookings from "./pages/admin/AdminBookings";
+import AdminFeedback from "./pages/admin/AdminFeedback";
+
+// Feedback modal
+import FeedbackModal from "./components/FeedbackModal";
 
 function AdminRoutes() {
   return (
@@ -26,6 +30,7 @@ function AdminRoutes() {
         <Route path="/admin" component={AdminDashboard} />
         <Route path="/admin/sessions" component={AdminSessions} />
         <Route path="/admin/bookings" component={AdminBookings} />
+        <Route path="/admin/feedback" component={AdminFeedback} />
         <Route component={NotFound} />
       </Switch>
     </AdminLayout>
@@ -56,6 +61,7 @@ function App() {
         <TooltipProvider>
           <Toaster />
           <Router />
+          <FeedbackModal />
         </TooltipProvider>
       </ThemeProvider>
     </ErrorBoundary>

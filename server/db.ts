@@ -1,6 +1,6 @@
 import { eq, asc, desc, sql } from "drizzle-orm";
 import { drizzle } from "drizzle-orm/mysql2";
-import { InsertUser, users, sessions, bookings, InsertSession, InsertBooking } from "../drizzle/schema";
+import { InsertUser, users, sessions, bookings, InsertSession, InsertBooking, feedback, InsertFeedback } from "../drizzle/schema";
 import { ENV } from "./_core/env";
 
 let _db: ReturnType<typeof drizzle> | null = null;
@@ -152,6 +152,17 @@ export async function getAllBookingsWithSession() {
 
 // ─── Promotional Materials ────────────────────────────────────────────────────
 
+// ─── Feedback ─────────────────────────────────────────────────────────────────
 
+export async function createFeedback(data: InsertFeedback) {
+  const db = await getDb();
+  if (!db) throw new Error("Database not available");
+  await db.insert(feedback).values(data);
+}
 
+export async function getAllFeedback() {
+  const db = await getDb();
+  if (!db) return [];
+  return db.select().from(feedback).orderBy(desc(feedback.createdAt));
+}
 

@@ -84,3 +84,32 @@ export const bookings = mysqlTable("bookings", {
 export type Booking = typeof bookings.$inferSelect;
 export type InsertBooking = typeof bookings.$inferInsert;
 
+// ─── Feedback ─────────────────────────────────────────────────────────────────
+
+export const feedback = mysqlTable("feedback", {
+  id: int("id").autoincrement().primaryKey(),
+  name: varchar("name", { length: 100 }),
+  email: varchar("email", { length: 320 }),
+  overallExperience: mysqlEnum("overallExperience", [
+    "excellent",
+    "good",
+    "okay",
+    "poor",
+  ]).notNull(),
+  mostValuable: text("mostValuable"),
+  improvements: text("improvements"),
+  nextProjectWhen: mysqlEnum("nextProjectWhen", [
+    "asap",
+    "3_months",
+    "6_months",
+    "12_months",
+    "not_sure",
+  ]).notNull(),
+  nextProjectHow: text("nextProjectHow"),
+  recommend: mysqlEnum("recommend", ["yes", "maybe", "no"]).notNull(),
+  createdAt: timestamp("createdAt").defaultNow().notNull(),
+});
+
+export type Feedback = typeof feedback.$inferSelect;
+export type InsertFeedback = typeof feedback.$inferInsert;
+

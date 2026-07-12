@@ -1,12 +1,13 @@
 import { Link, useLocation } from "wouter";
 import { useAuth } from "@/_core/hooks/useAuth";
 import { getLoginUrl } from "@/const";
-import { CalendarDays, BookOpen, Home, LogOut, Loader2 } from "lucide-react";
+import { CalendarDays, BookOpen, Home, LogOut, Loader2, MessageSquareHeart } from "lucide-react";
 
 const NAV_ITEMS = [
   { href: "/admin", label: "Dashboard", icon: <Home size={18} /> },
   { href: "/admin/sessions", label: "Sessions", icon: <CalendarDays size={18} /> },
   { href: "/admin/bookings", label: "Bookings", icon: <BookOpen size={18} /> },
+  { href: "/admin/feedback", label: "Feedback", icon: <MessageSquareHeart size={18} /> },
 ];
 
 export default function AdminLayout({ children }: { children: React.ReactNode }) {

@@ -42,3 +42,14 @@
 - [ ] Admin upload panel for adding/removing materials
 - [ ] Wire /materials route in App.tsx and add to PublicNav
 - [ ] Update all email references to info@menichuvesmichu.org
+
+## Phase 8: Feedback Modal
+- [x] feedback table added to drizzle/schema.ts and pushed to DB (migration 0004)
+- [x] createFeedback and getAllFeedback helpers added to server/db.ts
+- [x] feedbackInput schema and feedback router added to server/routers.ts (submit + all admin query)
+- [x] FeedbackModal component created at client/src/components/FeedbackModal.tsx
+- [x] FeedbackModal mounted in App.tsx (shows after 8s delay, once per session)
+- [x] AdminFeedback page created at client/src/pages/admin/AdminFeedback.tsx
+- [x] AdminFeedback route added to App.tsx (/admin/feedback)
+- [x] Feedback link added to admin sidebar in AdminLayout.tsx
+- [x] Vitest tests for feedback.submit and feedback.all (6 tests passing)
