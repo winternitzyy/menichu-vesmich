@@ -1,6 +1,9 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Link, useLocation } from "wouter";
-import { Menu, X } from "lucide-react";
+import { Menu, X, MessageSquareHeart } from "lucide-react";
+
+const MODAL_KEY = "mv_feedback_shown";
+const BANNER_KEY = "mv_feedback_banner_dismissed";
 
 const NAV_LINKS = [
   { href: "/", label: "Home" },
@@ -13,12 +16,48 @@ const NAV_LINKS = [
 export default function PublicNav() {
   const [location] = useLocation();
   const [open, setOpen] = useState(false);
+  const [showBanner, setShowBanner] = useState(false);
+
+  useEffect(() => {
+    const check = () => {
+      const modalShown = sessionStorage.getItem(MODAL_KEY);
+      const bannerDismissed = sessionStorage.getItem(BANNER_KEY);
+      setShowBanner(!!modalShown && !bannerDismissed);
+    };
+    check();
+    // Re-check whenever sessionStorage changes (e.g. after modal closes)
+    window.addEventListener("mv_banner_update", check);
+    return () => window.removeEventListener("mv_banner_update", check);
+  }, []);
 
   return (
     <header
       className="sticky top-0 z-50 w-full"
       style={{ backgroundColor: "var(--teal-800)", color: "oklch(95% 0.02 185)" }}
     >
+      {showBanner && (
+        <div
+          className="w-full flex items-center justify-center gap-2 px-4 py-2 text-white text-sm font-medium"
+          style={{ backgroundColor: "var(--teal-600)", borderBottom: "1px solid var(--teal-500)" }}
+        >
+          <MessageSquareHeart size={15} style={{ color: "var(--gold-400)", flexShrink: 0 }} />
+          <span>
+            The project is finished —{" "}
+            <Link
+              href="/"
+              onClick={() => {
+                sessionStorage.removeItem(MODAL_KEY);
+                window.dispatchEvent(new Event("mv_banner_update"));
+              }}
+              className="underline underline-offset-2 font-semibold hover:opacity-80 transition-opacity no-underline"
+              style={{ color: "var(--gold-300)" }}
+            >
+              please leave feedback
+            </Link>
+            {" "}to help shape what comes next.
+          </span>
+        </div>
+      )}
       <div className="container flex items-center justify-between h-16">
         {/* Logo */}
         <Link href="/" className="flex items-center gap-2 no-underline">

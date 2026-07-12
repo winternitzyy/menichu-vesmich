@@ -45,8 +45,8 @@ export default function FeedbackModal() {
   const handleClose = () => {
     setOpen(false);
     if (!submitted) {
-      const bannerDismissed = sessionStorage.getItem(BANNER_KEY);
-      if (!bannerDismissed) setShowBanner(true);
+      // Signal PublicNav to show the banner
+      window.dispatchEvent(new Event("mv_banner_update"));
     }
   };
 
@@ -64,6 +64,7 @@ export default function FeedbackModal() {
     setOpen(false);
     setShowBanner(false);
     sessionStorage.setItem(BANNER_KEY, "1");
+    window.dispatchEvent(new Event("mv_banner_update"));
   };
 
   const handleSubmit = (e: React.FormEvent) => {
