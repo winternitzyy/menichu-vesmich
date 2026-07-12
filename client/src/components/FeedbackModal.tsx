@@ -7,14 +7,15 @@ import { Textarea } from "@/components/ui/textarea";
 import { Input } from "@/components/ui/input";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
-import { MessageSquareHeart, CheckCircle2 } from "lucide-react";
+import { MessageSquareHeart, CheckCircle2, X } from "lucide-react";
 
-const STORAGE_KEY = "mv_feedback_shown";
-const DELAY_MS = 8000; // show after 8 seconds
+const MODAL_KEY = "mv_feedback_shown";
+const BANNER_KEY = "mv_feedback_banner_dismissed";
 
 export default function FeedbackModal() {
   const [open, setOpen] = useState(false);
   const [submitted, setSubmitted] = useState(false);
+  const [showBanner, setShowBanner] = useState(false);
   const [form, setForm] = useState({
     name: "",
     email: "",
@@ -31,14 +32,39 @@ export default function FeedbackModal() {
   });
 
   useEffect(() => {
-    const alreadyShown = sessionStorage.getItem(STORAGE_KEY);
-    if (alreadyShown) return;
-    const timer = setTimeout(() => {
+    const alreadyShown = sessionStorage.getItem(MODAL_KEY);
+    const bannerDismissed = sessionStorage.getItem(BANNER_KEY);
+    if (!alreadyShown) {
       setOpen(true);
-      sessionStorage.setItem(STORAGE_KEY, "1");
-    }, DELAY_MS);
-    return () => clearTimeout(timer);
+      sessionStorage.setItem(MODAL_KEY, "1");
+    } else if (!bannerDismissed) {
+      setShowBanner(true);
+    }
   }, []);
+
+  const handleClose = () => {
+    setOpen(false);
+    if (!submitted) {
+      const bannerDismissed = sessionStorage.getItem(BANNER_KEY);
+      if (!bannerDismissed) setShowBanner(true);
+    }
+  };
+
+  const handleBannerDismiss = () => {
+    setShowBanner(false);
+    sessionStorage.setItem(BANNER_KEY, "1");
+  };
+
+  const handleBannerClick = () => {
+    setShowBanner(false);
+    setOpen(true);
+  };
+
+  const handleSubmitClose = () => {
+    setOpen(false);
+    setShowBanner(false);
+    sessionStorage.setItem(BANNER_KEY, "1");
+  };
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -59,7 +85,37 @@ export default function FeedbackModal() {
     setForm((f) => ({ ...f, [field]: val }));
 
   return (
-    <Dialog open={open} onOpenChange={setOpen}>
+    <>
+      {showBanner && (
+        <div
+          className="fixed top-0 left-0 right-0 z-50 flex items-center justify-between gap-3 px-4 py-2.5 text-white text-sm font-medium shadow-md"
+          style={{ backgroundColor: "var(--teal-700)" }}
+        >
+          <div className="flex items-center gap-2 flex-1 justify-center">
+            <MessageSquareHeart size={16} style={{ color: "var(--gold-400)" }} />
+            <span>
+              The project is finished —{" "}
+              <button
+                onClick={handleBannerClick}
+                className="underline underline-offset-2 font-semibold hover:opacity-80 transition-opacity cursor-pointer"
+                style={{ color: "var(--gold-300)" }}
+              >
+                please leave feedback
+              </button>
+              {" "}to help shape what comes next.
+            </span>
+          </div>
+          <button
+            onClick={handleBannerDismiss}
+            className="shrink-0 p-1 rounded hover:bg-white/20 transition-colors"
+            aria-label="Dismiss banner"
+          >
+            <X size={15} />
+          </button>
+        </div>
+      )}
+
+      <Dialog open={open} onOpenChange={(v) => { if (!v) handleClose(); }}>
       <DialogContent className="max-w-lg max-h-[90vh] overflow-y-auto">
         {submitted ? (
           <div className="flex flex-col items-center gap-4 py-8 text-center">
@@ -68,7 +124,7 @@ export default function FeedbackModal() {
             <p className="text-muted-foreground text-sm">
               Your thoughts help us shape the future of Menichu Vesmichu. We really appreciate you taking the time.
             </p>
-            <Button onClick={() => setOpen(false)} className="mt-2">Close</Button>
+            <Button onClick={handleSubmitClose} className="mt-2">Close</Button>
           </div>
         ) : (
           <>
@@ -184,7 +240,7 @@ export default function FeedbackModal() {
 
               {/* Actions */}
               <div className="flex gap-3 justify-end pt-1">
-                <Button type="button" variant="ghost" onClick={() => setOpen(false)}>
+                <Button type="button" variant="ghost" onClick={handleClose}>
                   Maybe later
                 </Button>
                 <Button
@@ -198,6 +254,7 @@ export default function FeedbackModal() {
           </>
         )}
       </DialogContent>
-    </Dialog>
+      </Dialog>
+    </>
   );
 }
