@@ -43,17 +43,15 @@ export default function PublicNav() {
           <MessageSquareHeart size={15} style={{ color: "var(--gold-400)", flexShrink: 0 }} />
           <span>
             The project is finished —{" "}
-            <Link
-              href="/"
+            <button
               onClick={() => {
-                sessionStorage.removeItem(MODAL_KEY);
-                window.dispatchEvent(new Event("mv_banner_update"));
+                window.dispatchEvent(new Event("mv_open_feedback"));
               }}
-              className="underline underline-offset-2 font-semibold hover:opacity-80 transition-opacity no-underline"
+              className="underline underline-offset-2 font-semibold hover:opacity-80 transition-opacity cursor-pointer bg-transparent border-0 p-0"
               style={{ color: "var(--gold-300)" }}
             >
               please leave feedback
-            </Link>
+            </button>
             {" "}to help shape what comes next.
           </span>
         </div>

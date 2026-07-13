@@ -33,13 +33,19 @@ export default function FeedbackModal() {
 
   useEffect(() => {
     const alreadyShown = sessionStorage.getItem(MODAL_KEY);
-    const bannerDismissed = sessionStorage.getItem(BANNER_KEY);
     if (!alreadyShown) {
       setOpen(true);
       sessionStorage.setItem(MODAL_KEY, "1");
-    } else if (!bannerDismissed) {
-      setShowBanner(true);
     }
+  }, []);
+
+  useEffect(() => {
+    const openModal = () => {
+      setSubmitted(false);
+      setOpen(true);
+    };
+    window.addEventListener("mv_open_feedback", openModal);
+    return () => window.removeEventListener("mv_open_feedback", openModal);
   }, []);
 
   const handleClose = () => {
