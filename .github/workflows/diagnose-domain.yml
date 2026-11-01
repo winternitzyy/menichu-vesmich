@@ -1,0 +1,25 @@
+name: Diagnose domain (temporary)
+on:
+  push:
+    branches: [claude/tender-cerf-h8ffme]
+    paths: [.github/workflows/diagnose-domain.yml]
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - name: DNS
+        run: |
+          echo "== NS khwestcliff.org"; dig +short NS khwestcliff.org
+          echo "== SOA khwestcliff.org"; dig +short SOA khwestcliff.org
+          for d in menichu.khwestcliff.org khwestcliff.org www.khwestcliff.org menichuvesmichu.org menichuvesimchu.org; do
+            echo "== $d (via public DNS)"; dig +short A $d @8.8.8.8; dig +short CNAME $d @8.8.8.8
+          done
+          ns=$(dig +short NS khwestcliff.org | head -1)
+          echo "== menichu.khwestcliff.org asked directly at $ns"; dig +noall +answer menichu.khwestcliff.org ANY @$ns || true
+          dig +noall +answer menichu.khwestcliff.org A @$ns || true
+          dig +noall +answer menichu.khwestcliff.org CNAME @$ns || true
+      - name: HTTP
+        run: |
+          for u in https://menichu.khwestcliff.org/ https://menichuvesmichu.org/; do
+            echo "== $u"; curl -sS -m 20 -o /dev/null -D - "$u" | grep -iE "^(HTTP|location|server)" || true
+          done
