@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { Link, useLocation } from "wouter";
 import { Menu, X, MessageSquareHeart } from "lucide-react";
+import { img } from "@/lib/asset";
 
 const MODAL_KEY = "mv_feedback_shown";
 const BANNER_KEY = "mv_feedback_banner_dismissed";
@@ -60,7 +61,7 @@ export default function PublicNav() {
         {/* Logo */}
         <Link href="/" className="flex items-center gap-2 no-underline">
           <img
-            src="https://d2xsxph8kpxj0f.cloudfront.net/310519663377220004/9KyRemormJqYQvzKhcafTt/logo_mv_v3-2TEJeCcusYFnQaV37Y7NSj.webp"
+            src={img("logo_mv_v3-2TEJeCcusYFnQaV37Y7NSj.webp")}
             alt="Menichu Vesmichu"
             className="h-14 w-auto"
             style={{ filter: "brightness(0) invert(1)" }}

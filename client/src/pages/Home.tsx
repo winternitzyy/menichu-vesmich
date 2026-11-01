@@ -1,9 +1,9 @@
 import { useEffect } from "react";
 import { Link } from "wouter";
-import { trpc } from "@/lib/trpc";
 import PublicNav from "@/components/PublicNav";
 import PublicFooter from "@/components/PublicFooter";
 import PhotoMarquee from "@/components/PhotoMarquee";
+import { img } from "@/lib/asset";
 
 // ── Static stats (fixed per brief) ───────────────────────────────────────────
 const STATS = [
@@ -22,14 +22,14 @@ const HIGHLIGHTS = [
 ];
 
 const GALLERY = [
-  { src: "https://d2xsxph8kpxj0f.cloudfront.net/310519663377220004/9KyRemormJqYQvzKhcafTt/event_scene_01-LpixZkw2kduXbFm4mmsPHw.webp", caption: "Community Gathering" },
-  { src: "https://d2xsxph8kpxj0f.cloudfront.net/310519663377220004/9KyRemormJqYQvzKhcafTt/event_scene_02-ivW9sH4vzEHbnhevsMyPuQ.webp", caption: "Health Workshop" },
-  { src: "https://d2xsxph8kpxj0f.cloudfront.net/310519663377220004/9KyRemormJqYQvzKhcafTt/event_scene_03-e9RC7iiaYH7Vps78p8bcK7.webp", caption: "Mother & Baby Group" },
-  { src: "https://d2xsxph8kpxj0f.cloudfront.net/310519663377220004/9KyRemormJqYQvzKhcafTt/event_scene_04-WnGQvWL6cr3ShcDmQnk3ZF.webp", caption: "Peer Support" },
-  { src: "https://d2xsxph8kpxj0f.cloudfront.net/310519663377220004/9KyRemormJqYQvzKhcafTt/event_scene_05-9BN8rXXBPVENTxtW2mAk7Z.webp", caption: "Community Celebration" },
-  { src: "https://d2xsxph8kpxj0f.cloudfront.net/310519663377220004/9KyRemormJqYQvzKhcafTt/event_scene_06-DDyd2EFEUUGe9c2aSWf68Q.webp", caption: "Mental Wellbeing Session" },
-  { src: "https://d2xsxph8kpxj0f.cloudfront.net/310519663377220004/9KyRemormJqYQvzKhcafTt/event_scene_07-9YKdXCVik8sENkL3pAYt9H.webp", caption: "Volunteer Training" },
-  { src: "https://d2xsxph8kpxj0f.cloudfront.net/310519663377220004/9KyRemormJqYQvzKhcafTt/event_scene_08-8FDtFMD8duhQaX7xEbd4XR.webp", caption: "Nutrition Workshop" },
+  { src: img("event_scene_01-LpixZkw2kduXbFm4mmsPHw.webp"), caption: "Community Gathering" },
+  { src: img("event_scene_02-ivW9sH4vzEHbnhevsMyPuQ.webp"), caption: "Health Workshop" },
+  { src: img("event_scene_03-e9RC7iiaYH7Vps78p8bcK7.webp"), caption: "Mother & Baby Group" },
+  { src: img("event_scene_04-WnGQvWL6cr3ShcDmQnk3ZF.webp"), caption: "Peer Support" },
+  { src: img("event_scene_05-9BN8rXXBPVENTxtW2mAk7Z.webp"), caption: "Community Celebration" },
+  { src: img("event_scene_06-DDyd2EFEUUGe9c2aSWf68Q.webp"), caption: "Mental Wellbeing Session" },
+  { src: img("event_scene_07-9YKdXCVik8sENkL3pAYt9H.webp"), caption: "Volunteer Training" },
+  { src: img("event_scene_08-8FDtFMD8duhQaX7xEbd4XR.webp"), caption: "Nutrition Workshop" },
 ];
 
 
@@ -104,7 +104,7 @@ export default function Home() {
             {/* Hero image */}
             <div className="flex-1 flex justify-center md:justify-end">
               <img
-                src="https://d2xsxph8kpxj0f.cloudfront.net/310519663377220004/9KyRemormJqYQvzKhcafTt/hero_chassidic_v1-FbssuDTSqp4chs7STRUaNh.webp"
+                src={img("hero_chassidic_v1-FbssuDTSqp4chs7STRUaNh.webp")}
                 alt="Mothers gathering at Menichu Vesmichu"
                 className="rounded-2xl shadow-2xl w-full object-cover"
                 style={{ maxWidth: "600px", maxHeight: "480px", minHeight: "320px" }}

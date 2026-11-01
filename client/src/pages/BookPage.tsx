@@ -1,5 +1,6 @@
 import { useState } from "react";
-import { trpc } from "@/lib/trpc";
+import { getUpcomingSessions, getSessionById } from "@/lib/sessions";
+import { submitBooking } from "@/lib/forms";
 import PublicNav from "@/components/PublicNav";
 import PublicFooter from "@/components/PublicFooter";
 import { toast } from "sonner";
@@ -15,8 +16,8 @@ const STAGE_OPTIONS = [
 ];
 
 export default function BookPage() {
-  const { data: sessions } = trpc.sessions.upcoming.useQuery();
-  const submitBooking = trpc.bookings.submit.useMutation();
+  const sessions = getUpcomingSessions();
+  const [isPending, setIsPending] = useState(false);
 
   const [selectedSessionId, setSelectedSessionId] = useState<string>("");
   const [form, setForm] = useState({
@@ -29,16 +30,16 @@ export default function BookPage() {
     e.preventDefault();
     if (!form.consent) { toast.error("Please confirm your consent to proceed."); return; }
     if (!selectedSessionId) { toast.error("Please select a session."); return; }
+    const session = getSessionById(Number(selectedSessionId));
+    if (!session) { toast.error("Please select a session."); return; }
+    setIsPending(true);
     try {
-      await submitBooking.mutateAsync({
-        ...form,
-        sessionId: Number(selectedSessionId),
-        stage: form.stage as any,
-        phone: form.phone || undefined,
-      });
+      await submitBooking(form, session);
       setSubmitted(true);
     } catch (err: any) {
       toast.error(err.message ?? "Something went wrong. Please try again.");
+    } finally {
+      setIsPending(false);
     }
   }
 
@@ -175,9 +176,7 @@ export default function BookPage() {
                   >
                     <option value="" disabled>Select a session…</option>
                     {sessions?.map((s) => {
-                      const dateStr = s.sessionDate instanceof Date
-                        ? s.sessionDate.toISOString().slice(0, 10)
-                        : String(s.sessionDate);
+                      const dateStr = s.sessionDate;
                       return (
                         <option key={s.id} value={s.id}>
                           {dateStr} — {s.title}
@@ -242,11 +241,11 @@ export default function BookPage() {
 
                 <button
                   type="submit"
-                  disabled={submitBooking.isPending}
+                  disabled={isPending}
                   className="w-full py-3 rounded-lg font-semibold text-sm transition-colors disabled:opacity-60 flex items-center justify-center gap-2 text-white"
                   style={{ backgroundColor: "var(--teal-600)" }}
                 >
-                  {submitBooking.isPending && <Loader2 size={16} className="animate-spin" />}
+                  {isPending && <Loader2 size={16} className="animate-spin" />}
                   Confirm Booking
                 </button>
               </form>

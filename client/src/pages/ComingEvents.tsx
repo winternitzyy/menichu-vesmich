@@ -1,5 +1,6 @@
 import { useState, useRef } from "react";
-import { trpc } from "@/lib/trpc";
+import { getUpcomingSessions, getSessionById } from "@/lib/sessions";
+import { submitBooking } from "@/lib/forms";
 import PublicNav from "@/components/PublicNav";
 import PublicFooter from "@/components/PublicFooter";
 import { SESSION_TYPE_LABELS, SESSION_TYPE_COLOURS, formatSessionDate, groupByMonth } from "@/lib/sessionUtils";
@@ -17,8 +18,9 @@ const STAGE_OPTIONS = [
 ];
 
 export default function ComingEvents() {
-  const { data: sessions, isLoading } = trpc.sessions.upcoming.useQuery();
-  const submitBooking = trpc.bookings.submit.useMutation();
+  const sessions = getUpcomingSessions();
+  const isLoading = false;
+  const [isPending, setIsPending] = useState(false);
   const bookingRef = useRef<HTMLDivElement>(null);
 
   const [selectedSessionId, setSelectedSessionId] = useState<string>("");
@@ -45,16 +47,16 @@ export default function ComingEvents() {
     e.preventDefault();
     if (!form.consent) { toast.error("Please confirm your consent to proceed."); return; }
     if (!selectedSessionId) { toast.error("Please select a session."); return; }
+    const session = getSessionById(Number(selectedSessionId));
+    if (!session) { toast.error("Please select a session."); return; }
+    setIsPending(true);
     try {
-      await submitBooking.mutateAsync({
-        ...form,
-        sessionId: Number(selectedSessionId),
-        stage: form.stage as any,
-        phone: form.phone || undefined,
-      });
+      await submitBooking(form, session);
       setSubmitted(true);
     } catch (err: any) {
       toast.error(err.message ?? "Something went wrong. Please try again.");
+    } finally {
+      setIsPending(false);
     }
   }
 
@@ -135,7 +137,7 @@ export default function ComingEvents() {
                         </span>
                         <span className="text-xs text-gray-400 flex items-center gap-1">
                           <CalendarDays size={12} />
-                          {formatSessionDate(s.sessionDate instanceof Date ? s.sessionDate.toISOString().slice(0,10) : String(s.sessionDate))}
+                          {formatSessionDate(s.sessionDate)}
                         </span>
                       </div>
 
@@ -284,7 +286,7 @@ export default function ComingEvents() {
                   <option value="" disabled>Select a session…</option>
                   {sessions?.map((s) => (
                     <option key={s.id} value={s.id} style={{ backgroundColor: "var(--teal-800)" }}>
-                      {s.sessionDate instanceof Date ? s.sessionDate.toISOString().slice(0,10) : String(s.sessionDate)} — {s.title}
+                      {s.sessionDate} — {s.title}
                     </option>
                   ))}
                 </select>
@@ -342,11 +344,11 @@ export default function ComingEvents() {
 
               <button
                 type="submit"
-                disabled={submitBooking.isPending}
+                disabled={isPending}
                 className="w-full py-3 rounded-lg font-semibold text-sm transition-colors disabled:opacity-60 flex items-center justify-center gap-2"
                 style={{ backgroundColor: "var(--gold-500)", color: "oklch(18% 0.02 185)" }}
               >
-                {submitBooking.isPending && <Loader2 size={16} className="animate-spin" />}
+                {isPending && <Loader2 size={16} className="animate-spin" />}
                 Confirm Booking
               </button>
             </form>

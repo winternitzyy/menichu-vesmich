@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
-import { trpc } from "@/lib/trpc";
+import { submitForm } from "@/lib/forms";
+import { toast } from "sonner";
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } from "@/components/ui/dialog";
 import { Button } from "@/components/ui/button";
 import { Label } from "@/components/ui/label";
@@ -27,9 +28,35 @@ export default function FeedbackModal() {
     recommend: "" as "yes" | "maybe" | "no" | "",
   });
 
-  const submitFeedback = trpc.feedback.submit.useMutation({
-    onSuccess: () => setSubmitted(true),
-  });
+  const [isPending, setIsPending] = useState(false);
+  const submitFeedback = {
+    isPending,
+    mutate: async (data: Record<string, string | undefined>) => {
+      setIsPending(true);
+      try {
+        const labels: Record<string, string> = {
+          name: "Name",
+          email: "Email",
+          overallExperience: "Overall experience",
+          mostValuable: "Most valuable",
+          improvements: "Improvements",
+          nextProjectWhen: "Next project — when",
+          nextProjectHow: "Next project — how",
+          recommend: "Would recommend",
+        };
+        const fields: Record<string, string> = {};
+        for (const [k, v] of Object.entries(data)) {
+          if (v) fields[labels[k] ?? k] = v;
+        }
+        await submitForm("New feedback received", fields, data.email);
+        setSubmitted(true);
+      } catch (err: any) {
+        toast.error(err.message ?? "Something went wrong. Please try again.");
+      } finally {
+        setIsPending(false);
+      }
+    },
+  };
 
   useEffect(() => {
     const alreadyShown = sessionStorage.getItem(MODAL_KEY);
