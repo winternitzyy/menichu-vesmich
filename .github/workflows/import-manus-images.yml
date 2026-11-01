@@ -5,10 +5,6 @@ name: Import images from Manus
 # client/public/images/ and commits them, so the site no longer needs Manus.
 
 on:
-  # TEMPORARY: lets the import run from this branch before it is merged.
-  push:
-    branches: [claude/tender-cerf-h8ffme]
-    paths: [.github/workflows/import-manus-images.yml]
   workflow_dispatch:
     inputs:
       site_url:

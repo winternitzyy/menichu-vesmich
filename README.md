@@ -16,7 +16,7 @@ The old server code (`server/`, `drizzle/`) is still in the repo but isn't used 
 
 1. **Make the repository public.** GitHub Pages is free only for public repositories (a private repo needs a paid GitHub plan). Go to Settings → General → Danger Zone → Change visibility. The code has no passwords or API keys in it.
 2. **Turn on Pages.** Go to Settings → Pages → Build and deployment → Source and choose **GitHub Actions**.
-3. **Copy the photos off Manus, while the Manus site is still online.** Go to Actions → **Import images from Manus** → Run workflow. It downloads every photo and logo into `client/public/images/`, commits them, and redeploys the site.
+3. **Photos: already done.** All 30 photos and logos were copied from Manus into `client/public/images/`. If you add new images on Manus before switching, run Actions → **Import images from Manus** again to fetch them.
 4. **Set up email for bookings and feedback.** Get a free access key at <https://web3forms.com> using the email address that should receive submissions. Then add it under Settings → Secrets and variables → Actions → **Variables** → New repository variable:
    - `VITE_WEB3FORMS_ACCESS_KEY` = your key
 5. **Optional: online donations.** In Stripe, go to Payment Links → New and pick "Customers choose what to pay". Set the confirmation page to redirect to `<your site>/donate/thank-you`. Then add this variable:
@@ -36,7 +36,7 @@ The site will be at `https://winternitzyy.github.io/menichu-vesmich/`.
 
 The site adjusts to the domain on its own, with no code changes.
 
-Do step 3 of the setup (importing the images) **before** you move the domain away from Manus. The import downloads the photos from the live Manus site.
+The photos are already copied into the repo, so moving the domain away from Manus is safe.
 
 ## Everyday edits
 
