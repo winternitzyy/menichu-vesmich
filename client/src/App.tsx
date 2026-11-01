@@ -1,7 +1,7 @@
 import { Toaster } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import NotFound from "@/pages/NotFound";
-import { Route, Switch } from "wouter";
+import { Route, Router as WouterRouter, Switch } from "wouter";
 import ErrorBoundary from "./components/ErrorBoundary";
 import { ThemeProvider } from "./contexts/ThemeContext";
 
@@ -13,29 +13,11 @@ import BookPage from "./pages/BookPage";
 import Donate from "./pages/Donate";
 import DonateThankYou from "./pages/DonateThankYou";
 
-// Admin pages
-import AdminLayout from "./pages/admin/AdminLayout";
-import AdminDashboard from "./pages/admin/AdminDashboard";
-import AdminSessions from "./pages/admin/AdminSessions";
-import AdminBookings from "./pages/admin/AdminBookings";
-import AdminFeedback from "./pages/admin/AdminFeedback";
-
 // Feedback modal
 import FeedbackModal from "./components/FeedbackModal";
 
-function AdminRoutes() {
-  return (
-    <AdminLayout>
-      <Switch>
-        <Route path="/admin" component={AdminDashboard} />
-        <Route path="/admin/sessions" component={AdminSessions} />
-        <Route path="/admin/bookings" component={AdminBookings} />
-        <Route path="/admin/feedback" component={AdminFeedback} />
-        <Route component={NotFound} />
-      </Switch>
-    </AdminLayout>
-  );
-}
+// On GitHub Pages the site may live under a sub-path (e.g. /menichu-vesmich/).
+const BASE_PATH = import.meta.env.BASE_URL.replace(/\/$/, "");
 
 function Router() {
   return (
@@ -46,8 +28,6 @@ function Router() {
       <Route path="/book" component={BookPage} />
       <Route path="/donate" component={Donate} />
       <Route path="/donate/thank-you" component={DonateThankYou} />
-      <Route path="/admin" component={AdminRoutes} />
-      <Route path="/admin/:rest*" component={AdminRoutes} />
       <Route path="/404" component={NotFound} />
       <Route component={NotFound} />
     </Switch>
@@ -60,7 +40,9 @@ function App() {
       <ThemeProvider defaultTheme="light">
         <TooltipProvider>
           <Toaster />
-          <Router />
+          <WouterRouter base={BASE_PATH}>
+            <Router />
+          </WouterRouter>
           <FeedbackModal />
         </TooltipProvider>
       </ThemeProvider>

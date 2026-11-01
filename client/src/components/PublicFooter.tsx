@@ -1,4 +1,5 @@
 import { Link } from "wouter";
+import { img } from "@/lib/asset";
 
 export default function PublicFooter() {
   return (
@@ -12,7 +13,7 @@ export default function PublicFooter() {
           <div>
             <div className="mb-4">
               <img
-                src="https://d2xsxph8kpxj0f.cloudfront.net/310519663377220004/9KyRemormJqYQvzKhcafTt/logo_mv_v3-2TEJeCcusYFnQaV37Y7NSj.webp"
+                src={img("logo_mv_v3-2TEJeCcusYFnQaV37Y7NSj.webp")}
                 alt="Menichu Vesmichu"
                 className="h-16 w-auto"
                 style={{ filter: "brightness(0) invert(1)" }}
@@ -25,7 +26,7 @@ export default function PublicFooter() {
             <div className="mt-4">
               <div className="bg-white rounded-lg px-3 py-2 inline-flex items-center">
                 <img
-                  src="/manus-storage/community-fund-logo_ac6fc928.png"
+                  src={img("community-fund-logo_ac6fc928.png")}
                   alt="Funded by the National Lottery Community Fund"
                   className="h-8 w-auto"
                 />

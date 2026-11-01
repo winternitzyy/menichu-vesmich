@@ -1,13 +1,15 @@
-import { trpc } from "@/lib/trpc";
+import { getPastSessions } from "@/lib/sessions";
 import PublicNav from "@/components/PublicNav";
 import PublicFooter from "@/components/PublicFooter";
 import { SESSION_TYPE_LABELS, SESSION_TYPE_COLOURS, formatSessionDate, groupByMonth } from "@/lib/sessionUtils";
 import type { SessionType } from "@/lib/sessionUtils";
 import { Loader2, CalendarDays, Clock, MapPin } from "lucide-react";
 import { useState } from "react";
+import { img } from "@/lib/asset";
 
 export default function PastEvents() {
-  const { data: sessions, isLoading } = trpc.sessions.past.useQuery();
+  const sessions = getPastSessions();
+  const isLoading = false;
   const [activeMonth, setActiveMonth] = useState<string>("all");
 
   // Group in reverse chronological order (already sorted desc from server)
@@ -108,9 +110,7 @@ export default function PastEvents() {
                 </h2>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
                   {group.sessions.map((s) => {
-                    const dateStr = s.sessionDate instanceof Date
-                      ? s.sessionDate.toISOString().slice(0, 10)
-                      : String(s.sessionDate);
+                    const dateStr = s.sessionDate;
                     return (
                       <div
                         key={s.id}
@@ -183,10 +183,10 @@ export default function PastEvents() {
           </div>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
             {[
-              { src: "/manus-storage/event_real_02_d94a533a.webp", caption: "Community Gathering" },
-              { src: "/manus-storage/event_real_03_9bbc84f1.webp", caption: "Programme Session" },
-              { src: "/manus-storage/event_real_04_b5520abe.webp", caption: "Volunteer Training" },
-              { src: "/manus-storage/event_real_01_90408138.webp", caption: "Crèche & Baby Play" },
+              { src: img("event_real_02_d94a533a.webp"), caption: "Community Gathering" },
+              { src: img("event_real_03_9bbc84f1.webp"), caption: "Programme Session" },
+              { src: img("event_real_04_b5520abe.webp"), caption: "Volunteer Training" },
+              { src: img("event_real_01_90408138.webp"), caption: "Crèche & Baby Play" },
             ].map((photo) => (
               <div
                 key={photo.src}

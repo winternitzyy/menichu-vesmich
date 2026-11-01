@@ -1,9 +1,9 @@
 import { useState } from "react";
-import { trpc } from "@/lib/trpc";
+import { CONTACT_EMAIL, STRIPE_DONATION_LINK } from "@/siteConfig";
 import PublicNav from "@/components/PublicNav";
 import PublicFooter from "@/components/PublicFooter";
 import { toast } from "sonner";
-import { Heart, Loader2, Gift, Users, BookOpen, Baby } from "lucide-react";
+import { Heart, Gift, Users, BookOpen, Baby } from "lucide-react";
 
 const PRESET_AMOUNTS = [5, 10, 25, 50, 100];
 
@@ -17,11 +17,6 @@ const IMPACT_ITEMS = [
 export default function Donate() {
   const [selectedAmount, setSelectedAmount] = useState<number | null>(25);
   const [customAmount, setCustomAmount] = useState("");
-  const [donorName, setDonorName] = useState("");
-  const [message, setMessage] = useState("");
-  const [isAnonymous, setIsAnonymous] = useState(false);
-
-  const createCheckout = trpc.donations.createCheckout.useMutation();
 
   const finalAmount = customAmount ? parseFloat(customAmount) : selectedAmount;
 
@@ -30,17 +25,14 @@ export default function Donate() {
       toast.error("Please enter a donation amount of at least £1.");
       return;
     }
-    try {
-      const { url } = await createCheckout.mutateAsync({
-        amountPence: Math.round(finalAmount * 100),
-        donorName: isAnonymous ? "Anonymous" : donorName || "Anonymous",
-        message: message || undefined,
-      });
-      toast.success("Redirecting to secure payment…");
-      window.open(url, "_blank");
-    } catch (err: any) {
-      toast.error(err.message ?? "Something went wrong. Please try again.");
+    if (!STRIPE_DONATION_LINK) {
+      toast.error(`Online donations aren't set up yet — please email us at ${CONTACT_EMAIL}.`);
+      return;
     }
+    // Stripe Payment Links can't be pre-filled with an amount, so the donor
+    // confirms the amount on Stripe's page.
+    toast.success(`Opening secure payment — please enter £${finalAmount} on the next page.`);
+    window.open(STRIPE_DONATION_LINK, "_blank", "noopener");
   }
 
   return (
@@ -133,63 +125,15 @@ export default function Donate() {
               </div>
             </div>
 
-            {/* Donor name */}
-            <div className="mb-4">
-              <div className="flex items-center justify-between mb-1.5">
-                <label className="text-sm font-medium" style={{ color: "var(--teal-800)" }}>
-                  Your Name (optional)
-                </label>
-                <label className="flex items-center gap-1.5 text-xs text-gray-500 cursor-pointer">
-                  <input
-                    type="checkbox"
-                    checked={isAnonymous}
-                    onChange={(e) => setIsAnonymous(e.target.checked)}
-                    className="rounded"
-                  />
-                  Donate anonymously
-                </label>
-              </div>
-              <input
-                type="text"
-                placeholder="Your name"
-                value={donorName}
-                disabled={isAnonymous}
-                onChange={(e) => setDonorName(e.target.value)}
-                className="w-full px-4 py-2.5 rounded-lg border text-sm focus:outline-none focus:ring-2 disabled:opacity-40"
-                style={{ borderColor: "var(--cream-300)" }}
-              />
-            </div>
-
-            {/* Message */}
-            <div className="mb-6">
-              <label className="block text-sm font-medium mb-1.5" style={{ color: "var(--teal-800)" }}>
-                Leave a message (optional)
-              </label>
-              <textarea
-                rows={3}
-                placeholder="A message of support for the community…"
-                value={message}
-                onChange={(e) => setMessage(e.target.value)}
-                className="w-full px-4 py-2.5 rounded-lg border text-sm focus:outline-none focus:ring-2 resize-none"
-                style={{ borderColor: "var(--cream-300)" }}
-              />
-            </div>
-
             {/* Donate button */}
             <button
               onClick={handleDonate}
-              disabled={createCheckout.isPending || !finalAmount || finalAmount < 1}
+              disabled={!finalAmount || finalAmount < 1}
               className="w-full py-3.5 rounded-xl text-base font-bold transition-all flex items-center justify-center gap-2 disabled:opacity-50"
               style={{ backgroundColor: "var(--gold-500)", color: "oklch(18% 0.02 185)" }}
             >
-              {createCheckout.isPending ? (
-                <Loader2 size={18} className="animate-spin" />
-              ) : (
-                <Heart size={18} />
-              )}
-              {createCheckout.isPending
-                ? "Redirecting…"
-                : `Donate ${finalAmount ? `£${finalAmount}` : ""} Securely`}
+              <Heart size={18} />
+              {`Donate ${finalAmount ? `£${finalAmount}` : ""} Securely`}
             </button>
 
             <p className="text-xs text-center text-gray-400 mt-3">

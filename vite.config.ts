@@ -1,10 +1,10 @@
 import { jsxLocPlugin } from "@builder.io/vite-plugin-jsx-loc";
+import { vitePluginManusRuntime } from "vite-plugin-manus-runtime";
 import tailwindcss from "@tailwindcss/vite";
 import react from "@vitejs/plugin-react";
 import fs from "node:fs";
 import path from "node:path";
 import { defineConfig, type Plugin, type ViteDevServer } from "vite";
-import { vitePluginManusRuntime } from "vite-plugin-manus-runtime";
 
 // =============================================================================
 // Manus Debug Collector - Vite Plugin
@@ -150,9 +150,16 @@ function vitePluginManusDebugCollector(): Plugin {
   };
 }
 
-const plugins = [react(), tailwindcss(), jsxLocPlugin(), vitePluginManusRuntime(), vitePluginManusDebugCollector()];
+// The Manus-only plugins are skipped for the static GitHub Pages build.
+const isStaticBuild = process.env.STATIC_BUILD === "1";
+const plugins = isStaticBuild
+  ? [react(), tailwindcss()]
+  : [react(), tailwindcss(), jsxLocPlugin(), vitePluginManusRuntime(), vitePluginManusDebugCollector()];
 
 export default defineConfig({
+  // Sub-path the site is served from, e.g. "/menichu-vesmich/" on GitHub Pages
+  // (set by the deploy workflow). Defaults to "/".
+  base: process.env.BASE_PATH || "/",
   plugins,
   resolve: {
     alias: {
@@ -165,7 +172,7 @@ export default defineConfig({
   root: path.resolve(import.meta.dirname, "client"),
   publicDir: path.resolve(import.meta.dirname, "client", "public"),
   build: {
-    outDir: path.resolve(import.meta.dirname, "dist/public"),
+    outDir: path.resolve(import.meta.dirname, isStaticBuild ? "dist/static" : "dist/public"),
     emptyOutDir: true,
   },
   server: {
