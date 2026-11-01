@@ -30,35 +30,20 @@ Until a custom domain is set, the site is at `https://winternitzyy.github.io/men
 
 ### Custom domains
 
-The main address is **menichuvesmichu.org**. The old address **menichu.khwestcliff.org** redirects to it. (GitHub Pages can serve only one custom domain per site.)
+The main address is **menichu.khwestcliff.org**. **menichuvesmichu.org** redirects to it. (GitHub Pages can serve only one custom domain per site, so the redirect is a tiny second Pages site.)
 
-**1. Point menichuvesmichu.org at GitHub.** At whoever manages its DNS, remove the records that point to Manus and add these:
+**Main site: menichu.khwestcliff.org**
+1. In GoDaddy (khwestcliff.org) → DNS, remove any **Forwarding** for `menichu`. Then add a **CNAME** record: `menichu` → `winternitzyy.github.io`.
+2. In this repo, go to Settings → Pages → Custom domain, enter `menichu.khwestcliff.org`, and save. Once the DNS check passes, tick **Enforce HTTPS**.
+3. Go to Actions → **Deploy to GitHub Pages** → Run workflow.
 
-| Type | Name | Value |
-| --- | --- | --- |
-| A | `@` | `185.199.108.153` |
-| A | `@` | `185.199.109.153` |
-| A | `@` | `185.199.110.153` |
-| A | `@` | `185.199.111.153` |
-| CNAME | `www` | `winternitzyy.github.io` |
+**Redirect: menichuvesmichu.org → menichu.khwestcliff.org**
+- DNS for menichuvesmichu.org already points at GitHub (A records `185.199.108.153` to `185.199.111.153`, and `www` CNAME `winternitzyy.github.io`).
+- The redirect page lives in a separate public repo, `menichu-redirect`. It contains the files from [`redirect-site/`](redirect-site/).
+- That repo's Pages settings: deploy from branch `main` (root), with custom domain `menichuvesmichu.org` and **Enforce HTTPS** ticked.
+- Old links keep their page path. For example, `menichuvesmichu.org/past-events` goes to `menichu.khwestcliff.org/past-events`.
 
-**2. Tell GitHub about it.** Go to Settings → Pages → Custom domain, enter `menichuvesmichu.org`, and save. When the DNS check passes, tick **Enforce HTTPS**. The certificate can take up to an hour.
-
-**3. Redeploy.** Go to Actions → **Deploy to GitHub Pages** → Run workflow. The site then builds for the domain root instead of `/menichu-vesmich/`.
-
-**4. Redirect the old address.** In GoDaddy (khwestcliff.org) → DNS → **Forwarding** → Add forwarding → **Subdomain**:
-- Subdomain: `menichu`
-- Forward to: `https://menichuvesmichu.org`
-- Type: **Permanent (301)**, **Forward only**
-
-If `https://menichu.khwestcliff.org` shows a certificate error after this, use the backup redirect in [`redirect-site/`](redirect-site/) instead:
-1. Create a new public repo (e.g. `menichu-redirect`) and upload `index.html` and `404.html` from that folder.
-2. In the new repo, go to Settings → Pages → Deploy from branch `main`, and set Custom domain to `menichu.khwestcliff.org`.
-3. In GoDaddy, remove the forwarding and set a CNAME record: `menichu` → `winternitzyy.github.io`.
-
-This sends visitors on any old link, such as `/past-events`, to the same page on the new domain.
-
-**5. Stripe.** If you set up a donation Payment Link, use `https://menichuvesmichu.org/donate/thank-you` as its after-payment redirect.
+**Stripe.** If you set up a donation Payment Link, use `https://menichu.khwestcliff.org/donate/thank-you` as its after-payment redirect.
 
 ## Everyday edits
 
