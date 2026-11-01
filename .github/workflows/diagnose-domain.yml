@@ -1,0 +1,29 @@
+name: Diagnose domain (temporary)
+on:
+  push:
+    branches: [claude/tender-cerf-h8ffme]
+    paths: [.github/workflows/diagnose-domain.yml]
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - name: DNS
+        run: |
+          for d in menichuvesmichu.org www.menichuvesmichu.org menichu.khwestcliff.org; do
+            echo "== $d"; dig +short A $d; dig +short CNAME $d; dig +short AAAA $d
+          done
+          echo "== NS"; dig +short NS menichuvesmichu.org
+      - name: Fetch pages
+        run: |
+          for u in http://menichuvesmichu.org/ https://menichuvesmichu.org/ https://winternitzyy.github.io/menichu-vesmich/ http://menichu.khwestcliff.org/ https://menichu.khwestcliff.org/; do
+            echo "================ $u"
+            curl -sS -m 20 -D - -o body.html "$u" || true
+            echo "---- body (first 40 lines)"; head -40 body.html || true
+          done
+      - name: Fetch referenced assets on the custom domain
+        run: |
+          curl -sSL -m 20 https://menichuvesmichu.org/ -o home.html || curl -sSL -m 20 http://menichuvesmichu.org/ -o home.html || true
+          grep -oE '(src|href)="[^"]+\.(js|css)"' home.html | sed -E 's/.*="([^"]+)"/\1/' | while read p; do
+            case "$p" in http*) url="$p";; *) url="https://menichuvesmichu.org$p";; esac
+            echo "== $url"; curl -sS -m 20 -o /dev/null -w "%{http_code} %{content_type} %{size_download}\n" "$url" || true
+          done
