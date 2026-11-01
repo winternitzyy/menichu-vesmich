@@ -7,23 +7,35 @@ jobs:
   check:
     runs-on: ubuntu-latest
     steps:
-      - name: DNS
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: Install Playwright
         run: |
-          for d in menichuvesmichu.org www.menichuvesmichu.org menichu.khwestcliff.org; do
-            echo "== $d"; dig +short A $d; dig +short CNAME $d; dig +short AAAA $d
-          done
-          echo "== NS"; dig +short NS menichuvesmichu.org
-      - name: Fetch pages
+          npm init -y >/dev/null
+          npm i playwright@1.56.1 >/dev/null
+          npx playwright install --with-deps chromium >/dev/null
+      - name: Render live site
         run: |
-          for u in http://menichuvesmichu.org/ https://menichuvesmichu.org/ https://winternitzyy.github.io/menichu-vesmich/ http://menichu.khwestcliff.org/ https://menichu.khwestcliff.org/; do
-            echo "================ $u"
-            curl -sS -m 20 -D - -o body.html "$u" || true
-            echo "---- body (first 40 lines)"; head -40 body.html || true
-          done
-      - name: Fetch referenced assets on the custom domain
-        run: |
-          curl -sSL -m 20 https://menichuvesmichu.org/ -o home.html || curl -sSL -m 20 http://menichuvesmichu.org/ -o home.html || true
-          grep -oE '(src|href)="[^"]+\.(js|css)"' home.html | sed -E 's/.*="([^"]+)"/\1/' | while read p; do
-            case "$p" in http*) url="$p";; *) url="https://menichuvesmichu.org$p";; esac
-            echo "== $url"; curl -sS -m 20 -o /dev/null -w "%{http_code} %{content_type} %{size_download}\n" "$url" || true
-          done
+          cat > check.cjs <<'JS'
+          const { chromium } = require("playwright");
+          (async () => {
+            const b = await chromium.launch();
+            for (const url of ["https://menichuvesmichu.org/", "https://menichuvesmichu.org/past-events", "https://menichu.khwestcliff.org/"]) {
+              const p = await b.newPage();
+              const logs = [];
+              p.on("console", m => logs.push(`console.${m.type()}: ${m.text()}`));
+              p.on("pageerror", e => logs.push(`PAGE ERROR: ${e.message}\n${e.stack}`));
+              p.on("requestfailed", r => logs.push(`REQUEST FAILED: ${r.url()} ${r.failure()?.errorText}`));
+              p.on("response", r => { if (r.status() >= 400) logs.push(`HTTP ${r.status()}: ${r.url()}`); });
+              await p.goto(url, { waitUntil: "networkidle", timeout: 30000 }).catch(e => logs.push("GOTO: " + e.message));
+              await p.waitForTimeout(2000);
+              const text = await p.evaluate(() => document.body.innerText.slice(0, 300)).catch(e => "eval failed: " + e.message);
+              const rootLen = await p.evaluate(() => document.getElementById("root")?.innerHTML.length ?? -1).catch(() => -2);
+              console.log(`\n===== ${url}\nfinal url: ${p.url()}\n#root html length: ${rootLen}\nbody text: ${JSON.stringify(text)}\n${logs.join("\n")}`);
+              await p.close();
+            }
+            await b.close();
+          })();
+          JS
+          node check.cjs
